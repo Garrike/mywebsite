@@ -1,4 +1,4 @@
-import 'dart:developer';
+// import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:gabrielmoreira/pages/home.dart';
@@ -35,7 +35,6 @@ class _InitialPageState extends State<InitialPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     page = 0;
   }

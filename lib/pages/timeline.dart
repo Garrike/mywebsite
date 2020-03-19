@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gabrielmoreira/main.dart';
+// import 'package:gabrielmoreira/main.dart';
 
 class TimeLine extends StatefulWidget {
   @override
@@ -17,8 +17,8 @@ class _TimeLineState extends State<TimeLine> {
           child: Padding(            
             padding: EdgeInsets.symmetric(vertical: 10),
             child: Container(     
-              height: 850,
-              width: 1500,
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width / 1.5,
               child: Center(child: Text('TimeLine')),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8.0),
