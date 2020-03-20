@@ -240,73 +240,76 @@ class MyDynamicHeader extends SliverPersistentHeaderDelegate {
             SizedBox(
               height: 30,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(right: 25.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        '10.2K',
-                        style: GoogleFonts.rubik(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
-                      Text(
-                        'Projetos\nConcluídos',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.rubik(
-                            fontSize: 15,
-                            // fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 40.0),
-                  child: Column(
-                    children: <Widget>[
-                      Text(
-                        '543',
-                        style: GoogleFonts.rubik(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
-                      Text(
-                        'Projetos\nEm Andamento',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.rubik(
-                            fontSize: 15,
-                            // fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white60),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      'Edit Profile',
-                      style: GoogleFonts.rubik(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
+            percentage > 0.6 ? Opacity(
+              opacity: percentage,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(right: 25.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          '10.2K',
+                          style: GoogleFonts.rubik(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
+                        Text(
+                          'Projetos\nConcluídos',
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.rubik(
+                              fontSize: 15,
+                              // fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
+                      ],
                     ),
                   ),
-                ),
-              ],
-            ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 40.0),
+                    child: Column(
+                      children: <Widget>[
+                        Text(
+                          '543',
+                          style: GoogleFonts.rubik(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
+                        Text(
+                          'Projetos\nEm Andamento',
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.rubik(
+                              fontSize: 15,
+                              // fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.white60),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        'Edit Profile',
+                        style: GoogleFonts.rubik(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ) : Container(),
           ],
         ),
       );
