@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:gabrielmoreira/pages/home.dart';
 import 'package:gabrielmoreira/pages/timeline.dart';
+import 'package:gabrielmoreira/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 final pageController = PageController(initialPage: 0, keepPage: false);
@@ -37,6 +38,7 @@ class _InitialPageState extends State<InitialPage> {
   void initState() {
     super.initState();
     page = 0;
+    // initiateDatabase();
   }
 
   @override
