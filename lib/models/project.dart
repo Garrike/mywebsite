@@ -4,7 +4,7 @@ class Project {
   String type, title, description;
   DateTime date;
   List<String> tags, link;
-  Image image;
+  String image;
   bool status;
 
   Project(
