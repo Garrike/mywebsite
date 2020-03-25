@@ -210,63 +210,88 @@ class _HomeState extends State<Home> {
                             children: <Widget>[
                               Padding(
                                 padding: const EdgeInsets.only(right: 40.0),
-                                child: Text('PROJETOS',
-                                  style: GoogleFonts.pTSans(
-                                  fontSize: 20, fontWeight: FontWeight.bold, color: Color.fromRGBO(28, 28, 28, 1),),
-                                  textAlign: TextAlign.center,
+                                child: FlatButton(
+                                  onPressed: () {
+                                    print('pressed Projetos');
+                                  }, 
+                                  focusColor: Color.fromRGBO(28, 28, 28, 1),
+                                  splashColor: Color.fromRGBO(28, 28, 28, 1),                                  
+                                  child: Text('PROJETOS',
+                                    style: GoogleFonts.pTSans(
+                                    fontSize: 20, fontWeight: FontWeight.bold, color: Color.fromRGBO(28, 28, 28, 1),),
+                                    textAlign: TextAlign.center,
+                                  ),
                                 ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(right: 40.0),
-                                child: Text('LIVROS',
-                                  style: GoogleFonts.pTSans(
-                                  fontSize: 20, fontWeight: FontWeight.bold, color: Color.fromRGBO(118,109,109, 1)),
-                                  textAlign: TextAlign.center,
+                                child: FlatButton(
+                                  onPressed: () {
+                                    print('pressed Livros');
+                                  }, 
+                                  focusColor: Color.fromRGBO(28, 28, 28, 1),
+                                  splashColor: Color.fromRGBO(28, 28, 28, 1),
+                                  child: Text('LIVROS',
+                                    style: GoogleFonts.pTSans(
+                                    fontSize: 20, fontWeight: FontWeight.bold, color: Color.fromRGBO(118,109,109, 1)),
+                                    textAlign: TextAlign.center,
+                                  ),
                                 ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(right: 40.0),
-                                child: Text('FOTOS',
-                                  style: GoogleFonts.pTSans(
-                                  fontSize: 20, fontWeight: FontWeight.bold, color: Color.fromRGBO(118,109,109, 1),),
-                                  textAlign: TextAlign.center,
+                                child: FlatButton(
+                                  onPressed: () {
+                                    print('pressed Fotos');
+                                  }, 
+                                  focusColor: Color.fromRGBO(28, 28, 28, 1),
+                                  splashColor: Color.fromRGBO(28, 28, 28, 1),
+                                  child: Text('FOTOS',
+                                    style: GoogleFonts.pTSans(
+                                    fontSize: 20, fontWeight: FontWeight.bold, color: Color.fromRGBO(118,109,109, 1),),
+                                    textAlign: TextAlign.center,
+                                  ),
                                 ),
                               ),
-                              Text('SOBRE',
-                                style: GoogleFonts.pTSans(
-                                fontSize: 20, fontWeight: FontWeight.bold, color: Color.fromRGBO(118,109,109, 1),),
-                                textAlign: TextAlign.center,
+                              FlatButton(
+                                onPressed: () {
+                                  print('pressed About');
+                                }, 
+                                focusColor: Color.fromRGBO(28, 28, 28, 1),
+                                splashColor: Color.fromRGBO(28, 28, 28, 1),
+                                child: Text('SOBRE',
+                                  style: GoogleFonts.pTSans(
+                                  fontSize: 20, fontWeight: FontWeight.bold, color: Color.fromRGBO(118, 109, 109, 1),),
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
                               Expanded(child: Container()),
-                              Container(
-                                padding: EdgeInsets.only(right: 30),
-                                child: Container(
-                                  // padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                                  decoration: BoxDecoration(
-                                    color: Color.fromRGBO(28, 28, 28, 1),
-                                    border: Border.all(
-                                      color: Color.fromRGBO(28, 28, 28, 1),
-                                      width: 1 
-                                    ),
-                                  ),
-                                  child: FlatButton(
-                                    onPressed: () {
-                                      print('pressed');
-                                    },
-                                    child: Center(
-                                      child: Text(
-                                        'Follow',
-                                        style: GoogleFonts.pTSans(
-                                          fontSize: 20, fontWeight: FontWeight.bold, color: Color.fromRGBO(238, 245, 246, 1),
-                                        ),
-                                      ),
-                                    ),
+                              RaisedButton(
+                                onPressed: () {
+                                  print('FOLLOW');
+                                },
+                                color: Color.fromRGBO(28, 28, 28, 1),
+                                splashColor: Color.fromRGBO(115,158,171, 1),
+                                child: Text(
+                                  'Follow',
+                                  style: GoogleFonts.pTSans(
+                                    fontSize: 20, fontWeight: FontWeight.bold, color: Color.fromRGBO(238, 245, 246, 1),
                                   ),
                                 ),
-                              )
+                              ),
+                              Container(width: 20,),
                             ],
                           ),
-                        ),                        
+                        ),    
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 20.0, bottom: 20),
+                            child: Container(
+                              child: orderTimeLine()
+                            ),
+                          ),
+                        ),  
+                        // Container(height: 20),               
                       ],
                     ),
                   ),
@@ -282,8 +307,8 @@ class _HomeState extends State<Home> {
               width: MediaQuery.of(context).size.width / 4,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('images/TakeaBreak2.png'),
-                    fit: BoxFit.cover),
+                  image: AssetImage('images/TakeaBreak2.png'),
+                  fit: BoxFit.cover),
               ),
             ),
           ),
@@ -295,8 +320,8 @@ class _HomeState extends State<Home> {
               width: MediaQuery.of(context).size.width / 4,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('images/teste.png'),
-                    fit: BoxFit.cover),
+                  image: AssetImage('images/teste.png'),
+                  fit: BoxFit.cover),
               ),
             ),
           ),
@@ -313,10 +338,9 @@ class _HomeState extends State<Home> {
                   image: AssetImage("images/profileImage.png"),
                 ),
                 border: Border.all(
-                    width: 2, color: Color.fromRGBO(238, 245, 246, 1)),
-                //   top: BorderSide(width: 30.0, color: Color.fromRGBO(238,245,246, 1)),
-                //   bottom: BorderSide(width: 30.0, color: Color.fromRGBO(28, 28, 28, 1)),
-                // ),
+                  width: 2, 
+                  color: Color.fromRGBO(238, 245, 246, 1)
+                ),
               ),
             ),
           ),
@@ -324,6 +348,7 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+
   // timelineModel(TimelinePosition position) => Timeline.builder(
   //   itemBuilder: centerTimelineBuilder,
   //   itemCount: projects.length,
@@ -376,7 +401,7 @@ class _HomeState extends State<Home> {
   //                           children: <Widget>[
   //                             Padding(
   //                               padding: const EdgeInsets.only(right: 10.0),
-  //                               child: Text('${projects[i].date.toString()}', style: TextStyle(color: Colors.grey),),
+  //                               child: Text('${projects[i].date.year.toString()}', style: TextStyle(color: Colors.grey),),
   //                             ),
   //                             Padding(
   //                               padding: const EdgeInsets.only(right: 10.0),
@@ -408,4 +433,249 @@ class _HomeState extends State<Home> {
   //     iconBackground: colors[i],
   //     icon: icons[i]);
   // }
+}
+
+Widget orderTimeLine() {
+  return Container(
+    height: 500,
+    decoration: BoxDecoration(color: Colors.white),
+    margin: EdgeInsets.only(
+      bottom: 9,//SizeConfig.safeBlockHorizontal * 3,
+    ),
+    padding: EdgeInsets.only(
+      top: 9,//SizeConfig.safeBlockHorizontal * 3,
+      left: 21,//SizeConfig.safeBlockHorizontal * 7,
+      bottom: 9,//SizeConfig.safeBlockHorizontal * 3,
+    ),
+    child: timelineRow(projects),
+    // child: Column(
+    //   mainAxisAlignment: MainAxisAlignment.center,
+    //   crossAxisAlignment: CrossAxisAlignment.center,      
+    //   children: <Widget>[
+    //     timelineRow(projects),
+    //     // timelineRow("Order Inprocess", 'orderDateTime2', 1),
+    //     // timelineRow("Order Processed", "", 2),
+    //     // timelineRow("Order Shipped", "", 3),
+    //     // timelineLastRow("Order Delivered", ""),
+    //   ],
+    // ),
+  );
+}
+
+Widget timelineRow(List<Project> projetos) {
+  return ListView.builder(
+    shrinkWrap: true,
+    itemCount: projetos.length,
+    itemBuilder: (context, index) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          (2 * index) < projetos.length ? Expanded(
+            flex: 4,
+            child: Card(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  // mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      height: 180,
+                      width: 250,
+                      color: Color.fromRGBO(28, 28, 28, 1),
+                    ),
+                    Text('${projetos[2 * index].title}\n ${projetos[2 * index].description}',
+                        style: TextStyle(
+                            fontFamily: "regular",
+                            fontSize: 14,
+                            color: Colors.black54)),
+                  ],
+                ),
+              ),
+            ),
+          ) : Expanded(flex: 4, child: Container()),
+          Expanded(
+            flex: 1,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                (2 * index) < projetos.length ? Container(
+                  width: 36,
+                  height: 36,
+                  decoration: new BoxDecoration(
+                    color: Color.fromRGBO(28, 28, 28, 1),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        "${projetos[2 * index].date.day.toString()}", 
+                        style: GoogleFonts.barlow(
+                          fontSize: 14, 
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromRGBO(238, 245, 246, 1)
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      Text(
+                        "Mar", 
+                        style: GoogleFonts.barlow(
+                          fontSize: 12, 
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromRGBO(238, 245, 246, 1)
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                ) : Container(),
+                (2 * index) < projetos.length ? Container(
+                  width: 3,
+                  height: 20,
+                  decoration: new BoxDecoration(
+                    color: Color.fromRGBO(28, 28, 28, 1),
+                    shape: BoxShape.rectangle,
+                  ),
+                  child: Text(""),
+                ) : Container(),
+
+                (2 * index) + 1 < projetos.length ? Container(
+                  width: 36,
+                  height: 36,
+                  decoration: new BoxDecoration(
+                    color: Color.fromRGBO(28, 28, 28, 1),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        "${projetos[2 * index].date.day.toString()}", 
+                        style: GoogleFonts.barlow(
+                          fontSize: 14, 
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromRGBO(238, 245, 246, 1)
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      Text(
+                        "Mar", 
+                        style: GoogleFonts.barlow(
+                          fontSize: 12, 
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromRGBO(238, 245, 246, 1)
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                ) : Container(),
+                (2 * index) + 1 < projetos.length ? Container(
+                  width: 3,
+                  height: 180,
+                  decoration: new BoxDecoration(
+                    color: Color.fromRGBO(28, 28, 28, 1),
+                    shape: BoxShape.rectangle,
+                  ),
+                  child: Text(""),
+                ) : Container(),
+              ],
+            ),
+          ),
+          (2 * index) + 1 < projetos.length ? Expanded(
+            flex: 4,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(
+                  height: 40,
+                ),
+                Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      // mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Container(
+                          height: 180,
+                          width: 250,
+                          color: Color.fromRGBO(28, 28, 28, 1),
+                        ),
+                        Text('${projetos[(2 * index) + 1].title}\n ${projetos[(2 * index) + 1].description}',
+                          style: TextStyle(
+                            fontFamily: "regular",
+                            fontSize: 14,
+                            color: Colors.black54)),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ) : Expanded(flex: 4, child: Container(height: 30,)),
+        ],
+      );
+    }
+  );
+}
+
+Widget timelineLastRow(String title, String subTile) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceAround,
+    children: <Widget>[
+      Expanded(
+        flex: 1,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              width: 18,
+              height: 18,
+              decoration: new BoxDecoration(
+                color: Color.fromRGBO(28, 28, 28, 1),
+                shape: BoxShape.circle,
+              ),
+              child: Text(""),
+            ),
+            Container(
+              width: 3,
+              height: 20,
+              decoration: new BoxDecoration(
+                color: Colors.transparent,
+                shape: BoxShape.rectangle,
+              ),
+              child: Text(""),
+            ),
+          ],
+        ),
+      ),
+      Expanded(
+        flex: 9,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text('$title\n $subTile',
+                style: TextStyle(
+                    fontFamily: "regular",
+                    fontSize: 14,
+                    color: Colors.black54)),
+          ],
+        ),
+      ),
+    ],
+  );
 }
