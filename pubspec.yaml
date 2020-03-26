@@ -51,6 +51,7 @@ flutter:
     - images/future.jpg
     - images/profileImage.png
     - images/teste.png
+    - images/sky.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
