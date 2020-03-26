@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 
 class Project {
-  String type, title, description;
+  String type, title, description, status;
   DateTime date;
-  List<String> tags, link;
+  List<String> tags, link, comments;
   String image;
-  bool status;
+  int likes;
 
   Project(
     this.date,
@@ -15,6 +15,8 @@ class Project {
     this.status,
     this.tags,
     this.title,
-    this.type
+    this.type,
+    this.comments,
+    this.likes
   );
 }

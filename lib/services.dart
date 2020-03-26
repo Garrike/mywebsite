@@ -25,43 +25,80 @@ void initiateDatabase () {
   projects = [
     Project(
       DateTime(2020, 04, 25), 
-      'Descrição Projeto 1', 
-      'https://s3.amazonaws.com/cms.ipressroom.com/173/files/20182/5ab42d712cfac20c3403ab28_rocketmdrey/rocketmdrey_c788599d-0e2a-408c-8826-d9ef056f5118-prv.jpg', 
+      'Se três ou mais objetos se movem, um ao redor do outro, '
+      'a história não pode ser revertida. Essa é a conclusão de '
+      'um grupo de pesquisadores depois de rodar simulações '
+      'computacionais de 3 buracos negros, um orbitando o outro.', 
+      'https://spacetoday.com.br/wp-content/uploads/2020/03/physicslawsc.jpg', 
       ['https://github.com/Garrike','https://www.instagram.com/tabordagm/'], 
-      true, 
+      'Em Andamento', 
       ['Robótica', 'Flutter', 'Astronomia', 'Drone'], 
-      'Projeto 1',
-      'Projeto Pessoal'
+      'A Simetria do Tempo e as Leis da Física',
+      'Projeto Pessoal',
+      ['Muito Bom', 'Parabéns'],
+      4
     ),
     Project(
-      DateTime(2020, 04, 25), 
-      'Descrição Projeto 2', 
-      'https://i.pinimg.com/originals/1d/bb/1b/1dbb1b3390e1543b58404b1b9982de17.jpg', 
+      DateTime(2020, 04, 13), 
+      'A nossa galáxia é muito maior do que ela parece. Um novo trabalho '
+      'descobriu que a Via Láctea tem aproximadamente 2 milhões de anos-luz '
+      'de diâmetro, algo 15 vezes maior do que o disco espiral luminoso. O '
+      'número poderia levar a uma melhor estimativa de quão massiva a galáxia '
+      'é e quantas galáxias orbitam a nossa.', 
+      'https://spacetoday.com.br/wp-content/uploads/2020/03/032020_kc_milkway_feat-1028x579-1-1028x475.jpg', 
       ['https://github.com/Garrike','https://www.instagram.com/tabordagm/'], 
-      true, 
-      ['Robótica', 'Flutter', 'Astronomia', 'Drone'], 
-      'Projeto 2',
-      'Projeto Pessoal'
+      'Finalizado', 
+      ['NASA', 'Astronomia', 'Rockets'], 
+      'Os Astrônomos encontram a borda da Via Láctea',
+      'Projeto Pessoal',
+      ['Tamo Juntos Brow'],
+      2
     ),
     Project(
-      DateTime(2020, 04, 25), 
-      'Descrição Projeto 3', 
-      'https://4.imimg.com/data4/UU/VY/MY-23106880/robotics-project-500x500.jpg', 
+      DateTime(2020, 04, 31), 
+      'A matéria escura é um componente hipotético do nosso universo, '
+      'usada para explicar muitos comportamentos estranhos das estrelas e das galáxias.', 
+      'https://spacetoday.com.br/wp-content/uploads/2020/03/iq89WhYUoD3jWbBU9Cond6-650-80.jpg', 
       ['https://github.com/Garrike','https://www.instagram.com/tabordagm/'], 
-      true, 
+      'Em Andamento', 
       ['Robótica', 'Flutter', 'Astronomia', 'Drone'], 
-      'Projeto 3',
-      'Projeto Pessoal'
+      'Caçando Matéria Escura no Interior da Terra',
+      'Projeto Pessoal',
+      [],
+      3
     ),
     Project(
-      DateTime(2020, 04, 25), 
-      'Descrição Projeto 4', 
-      'https://4.imimg.com/data4/UU/VY/MY-23106880/robotics-project-500x500.jpg', 
+      DateTime(2020, 04, 04), 
+      'A sonda Juno da NASA capturou essa bela imagem do hemisfério sul de Júpiter '
+      'no dia 17 de fevereiro de 2020, durante a mais recente passagem da sonda pelo planeta gigante gasoso.', 
+      'https://spacetoday.com.br/wp-content/uploads/2020/03/pia23801-1270x475.jpg', 
       ['https://github.com/Garrike','https://www.instagram.com/tabordagm/'], 
-      true, 
+      'Finalizado', 
       ['Robótica', 'Flutter', 'Astronomia', 'Drone'], 
-      'Projeto 4',
-      'Projeto Pessoal'
-    )
+      'A Beleza Massiva de Júpter',
+      'Projeto Pessoal',
+      [],
+      1
+    ),
+    Project(
+      DateTime(2020, 04, 18), 
+      'Em primeiro lugar, o gelo de água é abundante no satélite Encélado de Saturno, '
+      'pois esse objeto está bem longe do Sol. Na verdade, quase todos os satélites dos '
+      'planetas gigantes, com a importante exceção de Io, satélite de Júpiter, os planetas '
+      'anões, como Plutão, os cometas e os objetos do Cinturão de Kuiper são formados '
+      'com uma grande quantidade de gelo de água. O hidrogênio é o elemento mais abundante '
+      'no universo e o oxigênio, o terceiro mais abundante, isso faz com que a formação de '
+      'H2O não seja tão complicada assim. Além de uma certa distância do Sol, a chamada '
+      'linha de neve, ou linha de congelamento, qualquer água deve estar no seu estado sólido, '
+      'e quando os planetas e os satélites se desenvolveram, o gelo foi um importante componente químico.', 
+      'https://spacetoday.com.br/wp-content/uploads/2020/03/Enceladus-982x475.jpg', 
+      ['https://github.com/Garrike','https://www.instagram.com/tabordagm/'], 
+      'Finalizado', 
+      ['Robótica', 'Flutter', 'Astronomia', 'Drone'], 
+      'De Onde Vem a Água de Encélado ?',
+      'Projeto Pessoal',
+      [],
+      5
+    ),
   ];
 }
