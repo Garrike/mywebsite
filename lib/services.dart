@@ -17,11 +17,33 @@ Future<List<Project>> getBooks () async {
   List<Project> books;
   try {
     final response = await http.get(
-      'https://us-central1-martinsmiguel-31f62.cloudfunctions.net/api/home/projects/9YfhHrR0kWwqM31MusiP'
+      'https://us-central1-martinsmiguel-31f62.cloudfunctions.net/api/home/projects/'
     ); 
     var jsonResponse = json.decode(response.body);
+    var projetos = jsonResponse['projects'];
     print('jsonResponse: ${jsonResponse.runtimeType}');
     print('jsonResponse type: $jsonResponse');
+
+    print('Print FOR ........................');
+    for(var item in projetos) {
+      print(item);
+    }
+    // final items = (jsonResponse['projects'] as List).map((i) => 
+    //   Project(
+    //     json['date'],
+    //     json['description'],
+    //     json['image'],
+    //     json['link'],
+    //     json['status'],
+    //     json['tags'],
+    //     json['title'],
+    //     json['type'],
+    //     json['comments'],
+    //     json['likes'],
+    //   ).fromJson());
+    // for (final item in items) {
+    //   print(item);
+    // }
   } catch(e) {
     print(e);
   }

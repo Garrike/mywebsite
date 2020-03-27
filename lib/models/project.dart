@@ -17,4 +17,19 @@ class Project {
     this.comments,
     this.likes
   );
+
+  factory Project.fromJson(Map<String, dynamic> json) {
+    return Project(
+      json['date'],
+      json['description'],
+      json['image'],
+      json['link'],
+      json['status'],
+      json['tags'],
+      json['title'],
+      json['type'],
+      json['comments'],
+      json['likes'],
+    );
+  }
 }
