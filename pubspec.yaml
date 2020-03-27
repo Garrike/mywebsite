@@ -27,6 +27,7 @@ dependencies:
   google_fonts: ^0.3.9
   timeline_list: ^0.0.3
   draggable_scrollbar: ^0.0.4
+  http: 
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-
 class Project {
   String type, title, description, status;
   DateTime date;

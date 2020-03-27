@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:gabrielmoreira/widgets/bookList.dart';
 import 'package:gabrielmoreira/widgets/dialog.dart';
 import 'package:gabrielmoreira/widgets/timeline.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -370,7 +371,7 @@ class _HomeState extends State<Home> {
                                 children: <Widget>[
                                   orderTimeLine(_semicircleController),
                                   Center(
-                                    child: Text('Livros'),
+                                    child: booklist(),
                                   ),
                                   Center(
                                     child: Text('Fotos'),

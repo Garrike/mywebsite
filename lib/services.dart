@@ -1,6 +1,8 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
+
 import 'package:gabrielmoreira/models/profile.dart';
 import 'package:gabrielmoreira/models/project.dart';
+import 'package:http/http.dart' as http;
 
 Profile profile;
 List<Project> projects;
@@ -11,17 +13,22 @@ class Service {
   }
 }
 
-void initiateDatabase () {
-  // profile.name = 'Gabriel Moreira';
-  // profile.birth = DateTime(1998, 4, 24);
-  // profile.description = 'Estudante de Engenharia de Controle e Automação pela Universidade Federal de Mato Grosso - Brasil';
-  // profile.email = 'g.tabordamoreira@gmail.com';
-  // profile.image = Image(image: NetworkImage("https://i.pinimg.com/originals/a3/f9/d8/a3f9d867a54ca5163c7adf815040bfaf.jpg"));
-  // profile.link = ['https://github.com/Garrike','https://www.instagram.com/tabordagm/'];
-  // profile.office = 'Estudante';
-  // profile.password = '123456';
-  // profile.tags = ['Robótica', 'Flutter', 'Astronomia', 'Drone'];
+Future<List<Project>> getBooks () async {
+  List<Project> books;
+  try {
+    final response = await http.get(
+      'https://us-central1-martinsmiguel-31f62.cloudfunctions.net/api/home/projects/9YfhHrR0kWwqM31MusiP'
+    ); 
+    var jsonResponse = json.decode(response.body);
+    print('jsonResponse: ${jsonResponse.runtimeType}');
+    print('jsonResponse type: $jsonResponse');
+  } catch(e) {
+    print(e);
+  }
+  return books;
+}
 
+void initiateDatabase () {
   projects = [
     Project(
       DateTime(2020, 04, 25), 
