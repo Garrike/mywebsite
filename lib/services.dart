@@ -19,13 +19,14 @@ Future<List<Project>> getBooks () async {
     final response = await http.get(
       'https://us-central1-martinsmiguel-31f62.cloudfunctions.net/api/home/projects/'
     ); 
+    // List list = json.decode(response.body).
     var jsonResponse = json.decode(response.body);
     var projetos = jsonResponse['projects'];
     print('jsonResponse: ${jsonResponse.runtimeType}');
     print('jsonResponse type: $jsonResponse');
 
     print('Print FOR ........................');
-    for(var item in projetos) {
+    for(var item in projetos){
       print(item);
     }
     // final items = (jsonResponse['projects'] as List).map((i) => 
