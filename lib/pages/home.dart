@@ -6,6 +6,8 @@ import 'package:gabrielmoreira/widgets/timeline.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:js' as js;
 
+import '../services.dart';
+
 PageController pageController = PageController(initialPage: 0);
 int page = 0;
 List<Icon> icons = [
@@ -22,6 +24,12 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getUser();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -372,6 +380,7 @@ class _HomeState extends State<Home> {
                                   orderTimeLine(_semicircleController),
                                   Center(
                                     child: booklist(),
+                                    // child: Text('Books'),
                                   ),
                                   Center(
                                     child: Text('Fotos'),
@@ -405,7 +414,7 @@ class _HomeState extends State<Home> {
             ),
           ),
           Positioned(
-            top: MediaQuery.of(context).size.height * 0.3 - 138,
+            top: MediaQuery.of(context).size.height * 0.3 - (MediaQuery.of(context).size.height * 0.3)*2.1 / 3, //138
             right: 70,
             child: Container(
               height: MediaQuery.of(context).size.height * 0.3,

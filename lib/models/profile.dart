@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 class Profile {
   String name, email, password, office, description;
   DateTime birth;
-  List<String> tags, link;
+  List<String> tags, link, bookId, projectId;
   Image image;
 
   Profile(
@@ -15,6 +15,8 @@ class Profile {
     this.name,
     this.office,
     this.password,
-    this.tags
+    this.tags,
+    this.bookId,
+    this.projectId
   );
 }

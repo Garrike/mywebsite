@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:gabrielmoreira/models/profile.dart';
 import 'package:gabrielmoreira/models/project.dart';
 import 'package:http/http.dart' as http;
@@ -13,42 +12,60 @@ class Service {
   }
 }
 
+Future<Profile> getUser() async {
+  try {
+    final response = await http.get('https://us-central1-martinsmiguel-31f62.cloudfunctions.net/api/home/profiles');
+    var data = json.decode(response.body)['profiles'];
+    data.map((key, value) {
+      print(key);
+      profile.projectId = value['projectId'];
+    });
+
+  } catch(e) {
+    print(e);
+  }
+}
+
 Future<List<Project>> getBooks () async {
   List<Project> books;
   try {
-    final response = await http.get(
-      'https://us-central1-martinsmiguel-31f62.cloudfunctions.net/api/home/projects/'
-    ); 
-    // List list = json.decode(response.body).
-    var jsonResponse = json.decode(response.body);
-    var projetos = jsonResponse['projects'];
-    print('jsonResponse: ${jsonResponse.runtimeType}');
-    print('jsonResponse type: $jsonResponse');
-
-    print('Print FOR ........................');
-    for(var item in projetos){
-      print(item);
-    }
-    // final items = (jsonResponse['projects'] as List).map((i) => 
-    //   Project(
-    //     json['date'],
-    //     json['description'],
-    //     json['image'],
-    //     json['link'],
-    //     json['status'],
-    //     json['tags'],
-    //     json['title'],
-    //     json['type'],
-    //     json['comments'],
-    //     json['likes'],
-    //   ).fromJson());
-    // for (final item in items) {
-    //   print(item);
-    // }
+    print(profile.projectId.length);
+    profile.projectId.forEach((element) async { 
+      final response = await http.get(
+      'https://us-central1-martinsmiguel-31f62.cloudfunctions.net/api/home/projects/$element'
+      ); 
+      var data = json.decode(response.body);
+      print(data);
+    });
+    
+    // projetos.map((key, element) {
+    //   print(key);
+    // });
+    //print('Print FOR ........................');
+    // projetos.map((key, value){
+    //   print(value['title']);
+      // return Project(
+      //   value['date'],
+      //   value['description'],
+      //   value['image'],
+      //   value['link'],
+      //   value['status'],
+      //   value['tags'],
+      //   value['title'],
+      //   value['type'],
+      //   value['comments'],
+      //   value['likes'],
+      // );
+      // return MapEntry(key, value);
+    // });
   } catch(e) {
     print(e);
   }
   return books;
+}
+
+imprime(key) {
+  return print(key);
 }
 
 void initiateDatabase () {
