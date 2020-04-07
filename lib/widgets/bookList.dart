@@ -3,7 +3,7 @@ import '../services.dart';
 
 Widget booklist () {
   return FutureBuilder<Object>(
-    future: getBooks(),
+    future: getProjects(),
     builder: (context, snapshot) {
       if(snapshot.hasError) return Text('Error');
       switch (snapshot.connectionState) {

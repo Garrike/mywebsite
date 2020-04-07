@@ -1,11 +1,11 @@
 class Project {
-  String type, title, description, status;
+  String type, title, description, status, author, collaborators;
   DateTime date;
-  List<String> tags, link, comments;
+  List tags, link, comments;
   String image;
   int likes;
 
-  Project(
+  Project({
     this.date,
     this.description,
     this.image,
@@ -14,22 +14,26 @@ class Project {
     this.tags,
     this.title,
     this.type,
+    this.author,
+    this.collaborators,
     this.comments,
     this.likes
-  );
+  });
 
   factory Project.fromJson(Map<String, dynamic> json) {
     return Project(
-      json['date'],
-      json['description'],
-      json['image'],
-      json['link'],
-      json['status'],
-      json['tags'],
-      json['title'],
-      json['type'],
-      json['comments'],
-      json['likes'],
+      date: json['date'],
+      description: json['description'],
+      image: json['image'],
+      link: json['link'],
+      status: json['status'],
+      tags: json['tags'],
+      title: json['title'],
+      type: json['type'],
+      author: json['author'],
+      collaborators: json['collaborators'],
+      comments: [''],
+      likes: 4,
     );
   }
 }

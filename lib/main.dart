@@ -36,7 +36,7 @@ class _InitialPageState extends State<InitialPage> {
   void initState() {
     super.initState();
     page = 0;
-    initiateDatabase();
+    // initiateDatabase();
   }
 
   @override

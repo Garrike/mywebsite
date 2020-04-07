@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:gabrielmoreira/models/project.dart';
 import 'package:gabrielmoreira/widgets/bookList.dart';
 import 'package:gabrielmoreira/widgets/dialog.dart';
 import 'package:gabrielmoreira/widgets/timeline.dart';
@@ -376,7 +377,25 @@ class _HomeState extends State<Home> {
                                 physics: NeverScrollableScrollPhysics(),
                                 controller: pageController,
                                 children: <Widget>[
-                                  orderTimeLine(_semicircleController),
+                                  FutureBuilder(
+                                    future: getProjects(),
+                                    builder: (context, snapshot) {
+                                      if(snapshot.hasError) return Text('Error');
+                                      List<Project> projects = snapshot.data;
+                                      switch (snapshot.connectionState) {
+                                        case ConnectionState.none:
+                                          return Text('Não conectado');
+                                        case ConnectionState.waiting:
+                                          return Center(child: CircularProgressIndicator(),);
+                                        case ConnectionState.active:
+                                          return Text('Iniciou mas não terminou');
+                                        // case ConnectionState.done:
+                                        //   return Text('Finalizado');
+                                        default: 
+                                          return orderTimeLine(projects, _semicircleController);
+                                      }
+                                    }
+                                  ),
                                   Center(
                                     child: booklist(),
                                     // child: Text('Books'),
