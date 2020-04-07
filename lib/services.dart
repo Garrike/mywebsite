@@ -17,16 +17,17 @@ Future<Profile> getUser() async {
     final response = await http.get('https://us-central1-martinsmiguel-31f62.cloudfunctions.net/api/home/profiles');
     var data = json.decode(response.body)['profiles'];
     data.map((key, value) {
-      print(key);
+      print(value['projectId']);
       profile.projectId = value['projectId'];
     });
 
   } catch(e) {
     print(e);
   }
+  return null;
 }
 
-Future<List<Project>> getBooks () async {
+Future getBooks () async {
   List<Project> books;
   try {
     print(profile.projectId.length);
