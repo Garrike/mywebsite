@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:gabrielmoreira/pages/home.dart';
+import 'package:gabrielmoreira/pages/home_responsive.dart';
 import 'package:gabrielmoreira/services.dart';
 
 final pageController = PageController(initialPage: 0, keepPage: false);

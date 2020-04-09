@@ -27,8 +27,10 @@ Future<Profile> getUser() async {
 }
 
 Future getProjects () async {
-  List<Project> projects = [];
+  List<Project> projectsService = [];
   Profile profile = await getUser();
+  projectsService = [];
+  
   print('Projects: ${profile.projectId.length}');
   try {
     print(profile.projectId.length);
@@ -38,8 +40,8 @@ Future getProjects () async {
       ); 
       var data = json.decode(response.body);
       print(data);
-      print('Project add before: ${projects.length}');
-      projects.add(
+      print('Project add before: ${projectsService.length}');
+      projectsService.add(
         Project(
           date: DateTime(2020, 04, 04),//data['date'],
           description: data['description'],
@@ -55,14 +57,14 @@ Future getProjects () async {
           likes: 4,
         )
       );
-      print('Project add after: ${projects.length}');
+      print('Project add after: ${projectsService.length}');
     }
-    print(projects.length);
-    return projects;
+    print(projectsService.length);
+    return projectsService;
   } catch(e) {
     print(e);
   }
-  return projects;
+  return projectsService;
 }
 
 // void initiateDatabase () {
