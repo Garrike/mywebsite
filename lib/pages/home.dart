@@ -43,173 +43,178 @@ class _HomeState extends State<Home> {
                 width: MediaQuery.of(context).size.width,
                 color: Color.fromRGBO(28, 28, 28, 1),
               ),
-              Row(
+              ListView(
+                shrinkWrap: true,
                 children: <Widget>[
-                  profileDesktop(context),
-                  Container(
-                    height: MediaQuery.of(context).size.height * 0.7,
-                    width: MediaQuery.of(context).size.width * (5 / 9),
-                    color: Color.fromRGBO(238, 245, 246, 1),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(top: 30.0),
-                          child: Row(
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.only(right: 40.0),
-                                child: FlatButton(
-                                  onPressed: () {
-                                    print('pressed Projetos');
-                                    // pageController.jumpToPage(0);
-                                    pageController.animateToPage(0, duration: Duration(seconds: 2), curve: Curves.easeInOut);
-                                    setState(() {
-                                      page = 0;
-                                    });
-                                  }, 
-                                  focusColor: Color.fromRGBO(28, 28, 28, 1),
-                                  splashColor: Color.fromRGBO(28, 28, 28, 1),                                  
-                                  child: Text('PROJETOS',
-                                    style: GoogleFonts.pTSans(
-                                      fontSize: 20, 
-                                      fontWeight: FontWeight.bold, 
-                                      color: page == 0 ? Color.fromRGBO(28, 28, 28, 1) : Color.fromRGBO(118,109,109, 1),
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(right: 40.0),
-                                child: FlatButton(
-                                  onPressed: () {
-                                    print('pressed Livros');
-                                    // pageController.jumpToPage(1);
-                                    pageController.animateToPage(1, duration: Duration(seconds: 2), curve: Curves.easeInOut);
-                                    setState(() {
-                                      page = 1;
-                                    });
-                                  }, 
-                                  focusColor: Color.fromRGBO(28, 28, 28, 1),
-                                  splashColor: Color.fromRGBO(28, 28, 28, 1),
-                                  child: Text('LIVROS',
-                                    style: GoogleFonts.pTSans(
-                                      fontSize: 20, 
-                                      fontWeight: FontWeight.bold, 
-                                      color: page == 1 ? Color.fromRGBO(28, 28, 28, 1) : Color.fromRGBO(118,109,109, 1)
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(right: 40.0),
-                                child: FlatButton(
-                                  onPressed: () {
-                                    print('pressed Fotos');
-                                    // pageController.jumpToPage(2);
-                                    pageController.animateToPage(2, duration: Duration(seconds: 2), curve: Curves.easeInOut);
-                                    setState(() {
-                                      page = 2;
-                                    });
-                                  }, 
-                                  focusColor: Color.fromRGBO(28, 28, 28, 1),
-                                  splashColor: Color.fromRGBO(28, 28, 28, 1),
-                                  child: Text('FOTOS',
-                                    style: GoogleFonts.pTSans(
-                                      fontSize: 20, 
-                                      fontWeight: FontWeight.bold, 
-                                      color: page == 2 ? Color.fromRGBO(28, 28, 28, 1) : Color.fromRGBO(118,109,109, 1),
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                              ),
-                              FlatButton(
-                                onPressed: () {
-                                  print('pressed About');
-                                  // pageController.jumpToPage(3);
-                                  pageController.animateToPage(3, duration: Duration(seconds: 2), curve: Curves.easeInOut);
-                                  setState(() {
-                                    page = 3;
-                                  });
-                                }, 
-                                focusColor: Color.fromRGBO(28, 28, 28, 1),
-                                splashColor: Color.fromRGBO(28, 28, 28, 1),
-                                child: Text('SOBRE',
-                                  style: GoogleFonts.pTSans(
-                                    fontSize: 20, 
-                                    fontWeight: FontWeight.bold, 
-                                    color: page == 3 ? Color.fromRGBO(28, 28, 28, 1) : Color.fromRGBO(118,109,109, 1),
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                              Expanded(child: Container()),
-                              RaisedButton(
-                                onPressed: () {
-                                  print('FOLLOW');
-                                  showAlertDialog(context);
-                                },
-                                color: Color.fromRGBO(28, 28, 28, 1),
-                                splashColor: Color.fromRGBO(115,158,171, 1),
-                                child: Text(
-                                  'Follow',
-                                  style: GoogleFonts.pTSans(
-                                    fontSize: 20, fontWeight: FontWeight.bold, color: Color.fromRGBO(238, 245, 246, 1),
-                                  ),
-                                ),
-                              ),
-                              Container(width: 20,),
-                            ],
-                          ),
-                        ),    
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 20.0, bottom: 5),
-                            child: Container(
-                              child: PageView(
-                                scrollDirection: Axis.horizontal,
-                                physics: NeverScrollableScrollPhysics(),
-                                controller: pageController,
+                  Row(
+                    children: <Widget>[
+                      profileDesktop(context),
+                      Container(
+                        height: MediaQuery.of(context).size.height * 0.7,
+                        width: MediaQuery.of(context).size.width * (5 / 9),
+                        color: Color.fromRGBO(238, 245, 246, 1),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(top: 30.0),
+                              child: Row(
                                 children: <Widget>[
-                                  FutureBuilder(
-                                    future: getProjects(),
-                                    builder: (context, snapshot) {
-                                      if(snapshot.hasError) return Text('Error');
-                                      List<Project> projects = snapshot.data;
-                                      switch (snapshot.connectionState) {
-                                        case ConnectionState.none:
-                                          return Text('Não conectado');
-                                        case ConnectionState.waiting:
-                                          return Center(child: CircularProgressIndicator(),);
-                                        case ConnectionState.active:
-                                          return Text('Iniciou mas não terminou');
-                                        // case ConnectionState.done:
-                                        //   return Text('Finalizado');
-                                        default: 
-                                          return orderTimeLine(projects, _semicircleController);
-                                      }
-                                    }
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 40.0),
+                                    child: FlatButton(
+                                      onPressed: () {
+                                        print('pressed Projetos');
+                                        // pageController.jumpToPage(0);
+                                        pageController.animateToPage(0, duration: Duration(seconds: 2), curve: Curves.easeInOut);
+                                        setState(() {
+                                          page = 0;
+                                        });
+                                      }, 
+                                      focusColor: Color.fromRGBO(28, 28, 28, 1),
+                                      splashColor: Color.fromRGBO(28, 28, 28, 1),                                  
+                                      child: Text('PROJETOS',
+                                        style: GoogleFonts.pTSans(
+                                          fontSize: 20, 
+                                          fontWeight: FontWeight.bold, 
+                                          color: page == 0 ? Color.fromRGBO(28, 28, 28, 1) : Color.fromRGBO(118,109,109, 1),
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
                                   ),
-                                  Center(
-                                    child: booklist(),
-                                    // child: Text('Books'),
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 40.0),
+                                    child: FlatButton(
+                                      onPressed: () {
+                                        print('pressed Livros');
+                                        // pageController.jumpToPage(1);
+                                        pageController.animateToPage(1, duration: Duration(seconds: 2), curve: Curves.easeInOut);
+                                        setState(() {
+                                          page = 1;
+                                        });
+                                      }, 
+                                      focusColor: Color.fromRGBO(28, 28, 28, 1),
+                                      splashColor: Color.fromRGBO(28, 28, 28, 1),
+                                      child: Text('LIVROS',
+                                        style: GoogleFonts.pTSans(
+                                          fontSize: 20, 
+                                          fontWeight: FontWeight.bold, 
+                                          color: page == 1 ? Color.fromRGBO(28, 28, 28, 1) : Color.fromRGBO(118,109,109, 1)
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
                                   ),
-                                  Center(
-                                    child: Text('Fotos'),
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 40.0),
+                                    child: FlatButton(
+                                      onPressed: () {
+                                        print('pressed Fotos');
+                                        // pageController.jumpToPage(2);
+                                        pageController.animateToPage(2, duration: Duration(seconds: 2), curve: Curves.easeInOut);
+                                        setState(() {
+                                          page = 2;
+                                        });
+                                      }, 
+                                      focusColor: Color.fromRGBO(28, 28, 28, 1),
+                                      splashColor: Color.fromRGBO(28, 28, 28, 1),
+                                      child: Text('FOTOS',
+                                        style: GoogleFonts.pTSans(
+                                          fontSize: 20, 
+                                          fontWeight: FontWeight.bold, 
+                                          color: page == 2 ? Color.fromRGBO(28, 28, 28, 1) : Color.fromRGBO(118,109,109, 1),
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
                                   ),
-                                  Center(
-                                    child: Text('Sobre'),
+                                  FlatButton(
+                                    onPressed: () {
+                                      print('pressed About');
+                                      // pageController.jumpToPage(3);
+                                      pageController.animateToPage(3, duration: Duration(seconds: 2), curve: Curves.easeInOut);
+                                      setState(() {
+                                        page = 3;
+                                      });
+                                    }, 
+                                    focusColor: Color.fromRGBO(28, 28, 28, 1),
+                                    splashColor: Color.fromRGBO(28, 28, 28, 1),
+                                    child: Text('SOBRE',
+                                      style: GoogleFonts.pTSans(
+                                        fontSize: 20, 
+                                        fontWeight: FontWeight.bold, 
+                                        color: page == 3 ? Color.fromRGBO(28, 28, 28, 1) : Color.fromRGBO(118,109,109, 1),
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
                                   ),
+                                  Expanded(child: Container()),
+                                  RaisedButton(
+                                    onPressed: () {
+                                      print('FOLLOW');
+                                      showAlertDialog(context);
+                                    },
+                                    color: Color.fromRGBO(28, 28, 28, 1),
+                                    splashColor: Color.fromRGBO(115,158,171, 1),
+                                    child: Text(
+                                      'Follow',
+                                      style: GoogleFonts.pTSans(
+                                        fontSize: 20, fontWeight: FontWeight.bold, color: Color.fromRGBO(238, 245, 246, 1),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(width: 20,),
                                 ],
-                              )
-                            ),
-                          ),
-                        ),                
-                      ],
-                    ),
+                              ),
+                            ),    
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 20.0, bottom: 5),
+                                child: Container(
+                                  child: PageView(
+                                    scrollDirection: Axis.horizontal,
+                                    physics: NeverScrollableScrollPhysics(),
+                                    controller: pageController,
+                                    children: <Widget>[
+                                      FutureBuilder(
+                                        future: getProjects(),
+                                        builder: (context, snapshot) {
+                                          if(snapshot.hasError) return Text('Error');
+                                          List<Project> projects = snapshot.data;
+                                          switch (snapshot.connectionState) {
+                                            case ConnectionState.none:
+                                              return Text('Não conectado');
+                                            case ConnectionState.waiting:
+                                              return Center(child: CircularProgressIndicator(),);
+                                            case ConnectionState.active:
+                                              return Text('Iniciou mas não terminou');
+                                            // case ConnectionState.done:
+                                            //   return Text('Finalizado');
+                                            default: 
+                                              return orderTimeLine(projects, _semicircleController);
+                                          }
+                                        }
+                                      ),
+                                      Center(
+                                        child: booklist(),
+                                        // child: Text('Books'),
+                                      ),
+                                      Center(
+                                        child: Text('Fotos'),
+                                      ),
+                                      Center(
+                                        child: Text('Sobre'),
+                                      ),
+                                    ],
+                                  )
+                                ),
+                              ),
+                            ),                
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -229,11 +234,11 @@ class _HomeState extends State<Home> {
             ),
           ),
           Positioned(
-            top: MediaQuery.of(context).size.height * 0.3 - (MediaQuery.of(context).size.height * 0.3)*2.1 / 3, //138
+            top: MediaQuery.of(context).size.height * 0.3 - 110,//(MediaQuery.of(context).size.height * 0.3)*2.1 / 3, //138
             right: 70,
             child: Container(
-              height: MediaQuery.of(context).size.height * 0.3,
-              width: MediaQuery.of(context).size.width / 4,
+              height: 150,//MediaQuery.of(context).size.height * 0.3,
+              width: 300,//MediaQuery.of(context).size.width / 4,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('images/TakeaBreak2.png'),
