@@ -90,7 +90,9 @@ Widget timelineRow(List<Project> projetos, ScrollController _semicircleControlle
                                 style: GoogleFonts.robotoSlab(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
                                 textAlign: TextAlign.justify,
                               ),
-                              Row(
+                              Wrap(
+                                direction: Axis.horizontal,
+                                crossAxisAlignment: WrapCrossAlignment.center,
                                 children: <Widget>[
                                   Text(
                                     'Status: ${projetos[2 * index].status}',
@@ -135,7 +137,8 @@ Widget timelineRow(List<Project> projetos, ScrollController _semicircleControlle
                                 softWrap: true
                               ),
                               SizedBox(height: 10),
-                              Row(
+                              Wrap(
+                                direction: Axis.horizontal,
                                 children: <Widget>[
                                   Container(
                                     width: 180,
@@ -286,7 +289,7 @@ Widget timelineRow(List<Project> projetos, ScrollController _semicircleControlle
                       child: Text(""),
                     ),
                   ) : Container(),
-                  (2 * index) + 1 == projetos.length ? InkResponse(
+                  index + 1 >= projetos.length ? InkResponse(
                     onTap: () {
                       print('tapped');
                       _semicircleController.animateTo(0, curve: Curves.easeInOut, duration: Duration(seconds: 2));

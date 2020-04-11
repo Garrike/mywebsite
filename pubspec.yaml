@@ -28,6 +28,7 @@ dependencies:
   timeline_list: ^0.0.3
   draggable_scrollbar: ^0.0.4
   http: 
+  responsive_builder: ^0.1.5
 
 dev_dependencies:
   flutter_test:

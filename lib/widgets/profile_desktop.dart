@@ -4,8 +4,10 @@ import 'dart:js' as js;
 
 Widget profileDesktop (BuildContext context) {
   return Container(
-    height: MediaQuery.of(context).size.height * 0.7,
-    width: MediaQuery.of(context).size.width * (4 / 9),
+    // height: MediaQuery.of(context).size.height * 0.7,
+    height: 486.49,
+    // width: MediaQuery.of(context).size.width * (4 / 9),
+    width: 1366 * (4 / 9),
     color: Color.fromRGBO(238, 245, 246, 1),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.center,
