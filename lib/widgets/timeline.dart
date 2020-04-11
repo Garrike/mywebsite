@@ -45,7 +45,7 @@ Widget timelineRow(List<Project> projetos, ScrollController _semicircleControlle
     itemCount: projetos.length != null ? (projetos.length / 2).round() : 0,
     itemBuilder: (context, index) {
       return Container(
-        height: 420,
+        height: 440,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -206,33 +206,39 @@ Widget timelineRow(List<Project> projetos, ScrollController _semicircleControlle
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   (2 * index) < projetos.length ? Container(
-                    width: 37,
+                    width: 55,
                     height: 37,
                     decoration: new BoxDecoration(
                       color: Color.fromRGBO(28, 28, 28, 1),
-                      shape: BoxShape.circle,
+                      // shape: BoxShape.circle,
+                      borderRadius: BorderRadius.all(Radius.circular(18)),
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    child: Row(
                       children: <Widget>[
-                        Text(
-                          "${projetos[2 * index].date.day.toString()}", 
-                          style: GoogleFonts.barlow(
-                            fontSize: 14, 
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromRGBO(238, 245, 246, 1)
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        Text(
-                          "Mar", 
-                          style: GoogleFonts.barlow(
-                            fontSize: 12, 
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromRGBO(238, 245, 246, 1)
-                          ),
-                          textAlign: TextAlign.center,
+                        Icon(Icons.arrow_left, color: Color.fromRGBO(238, 245, 246, 1)),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              "${projetos[2 * index].date.day.toString()}", 
+                              style: GoogleFonts.barlow(
+                                fontSize: 14, 
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromRGBO(238, 245, 246, 1)
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            Text(
+                              "Mar", 
+                              style: GoogleFonts.barlow(
+                                fontSize: 12, 
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromRGBO(238, 245, 246, 1)
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -248,34 +254,42 @@ Widget timelineRow(List<Project> projetos, ScrollController _semicircleControlle
                   ) : Container(),
 
                   (2 * index) + 1 < projetos.length ? Container(
-                    width: 37,
+                    width: 55,
                     height: 37,
                     decoration: new BoxDecoration(
                       color: Color.fromRGBO(28, 28, 28, 1),
-                      shape: BoxShape.circle,
+                      // shape: BoxShape.circle,
+                      borderRadius: BorderRadius.all(Radius.circular(18)),
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
-                        Text(
-                          "${projetos[2 * index + 1].date.day.toString()}", 
-                          style: GoogleFonts.barlow(
-                            fontSize: 14, 
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromRGBO(238, 245, 246, 1)
-                          ),
-                          textAlign: TextAlign.center,
+                        
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              "${projetos[2 * index + 1].date.day.toString()}", 
+                              style: GoogleFonts.barlow(
+                                fontSize: 14, 
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromRGBO(238, 245, 246, 1)
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            Text(
+                              "Mar", 
+                              style: GoogleFonts.barlow(
+                                fontSize: 12, 
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromRGBO(238, 245, 246, 1)
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
                         ),
-                        Text(
-                          "Mar", 
-                          style: GoogleFonts.barlow(
-                            fontSize: 12, 
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromRGBO(238, 245, 246, 1)
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
+                        Icon(Icons.arrow_right, color: Color.fromRGBO(238, 245, 246, 1)),
                       ],
                     ),
                   ) : Container(),
@@ -310,12 +324,8 @@ Widget timelineRow(List<Project> projetos, ScrollController _semicircleControlle
             (2 * index) + 1 < projetos.length ? Expanded(
               flex: 4,
               child: Column(
-                // mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.end,
-                // crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  // Expanded(child: Container(color: Colors.blueAccent,),),
-                  // SizedBox(height: 55),
                   MySeparator(),
                   SizedBox(height: 5,),
                   InkWell(
@@ -351,7 +361,9 @@ Widget timelineRow(List<Project> projetos, ScrollController _semicircleControlle
                                 style: GoogleFonts.robotoSlab(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
                                 textAlign: TextAlign.justify
                               ),
-                              Row(
+                              Wrap(
+                                crossAxisAlignment: WrapCrossAlignment.center,
+                                direction: Axis.horizontal,
                                 children: <Widget>[
                                   Text(
                                     'Status: ${projetos[2 * index + 1].status}',
@@ -396,7 +408,8 @@ Widget timelineRow(List<Project> projetos, ScrollController _semicircleControlle
                                 softWrap: true
                               ),
                               SizedBox(height: 10),
-                              Row(
+                              Wrap(
+                                direction: Axis.horizontal,
                                 children: <Widget>[
                                   Container(
                                     width: 180,

@@ -107,22 +107,26 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
-            Positioned(
-              top: MediaQuery.of(context).size.height * 0.3 - 110,//(MediaQuery.of(context).size.height * 0.3)*2.1 / 3, //138
-              right: 70,
-              child: Container(
-                height: 150,//MediaQuery.of(context).size.height * 0.3,
-                width: 300,//MediaQuery.of(context).size.width / 4,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('images/TakeaBreak2.png'),
-                    fit: BoxFit.cover),
+            sizingInformation.deviceScreenType == DeviceScreenType.Desktop
+              ? Positioned(
+                top: MediaQuery.of(context).size.height * 0.3 - 110,//(MediaQuery.of(context).size.height * 0.3)*2.1 / 3, //138
+                right: 70,
+                child: Container(
+                  height: 150,//MediaQuery.of(context).size.height * 0.3,
+                  width: 300,//MediaQuery.of(context).size.width / 4,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('images/TakeaBreak2.png'),
+                      fit: BoxFit.cover),
+                  ),
                 ),
-              ),
-            ),
+              )
+              : Container(),
             Positioned(
               top: 0,//-20,
-              left: (MediaQuery.of(context).size.width / 2) - 180,//132,
+              left: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
+                ? (MediaQuery.of(context).size.width / 2) - 180
+                : MediaQuery.of(context).size.width / 2 - 170,//132,
               child: Container(
                 height: MediaQuery.of(context).size.height * 0.3,
                 width: 1366 / 4, //MediaQuery.of(context).size.width / 4,
@@ -135,7 +139,9 @@ class _HomeState extends State<Home> {
             ),
             Positioned(
               top: (MediaQuery.of(context).size.height * 0.3) - 75,
-              left: MediaQuery.of(context).size.width / 6,
+              left: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
+                ? MediaQuery.of(context).size.width / 7 + 5
+                : MediaQuery.of(context).size.width / 2 - 70,
               child: Container(
                 width: 150.0,
                 height: 150.0,
@@ -162,7 +168,7 @@ class _HomeState extends State<Home> {
     return Container(
       height: 486.49,
       // width: MediaQuery.of(context).size.width * (5 / 9),
-      width: 1366 * (5 / 9),
+      width: 1366 * (6 / 10),
       color: Color.fromRGBO(238, 245, 246, 1),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -225,105 +231,147 @@ class _HomeState extends State<Home> {
 
   Widget linePages (SizingInformation sizingInformation) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(right: 40.0),
-          child: FlatButton(
-            onPressed: () {
-              print('pressed Projetos');
-              // pageController.jumpToPage(0);
-              pageController.animateToPage(0, duration: Duration(seconds: 2), curve: Curves.easeInOut);
-              setState(() {
-                page = 0;
-              });
-            }, 
-            focusColor: Color.fromRGBO(28, 28, 28, 1),
-            splashColor: Color.fromRGBO(28, 28, 28, 1),                                  
-            child: Text('PROJETOS',
-              style: GoogleFonts.pTSans(
-                fontSize: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
-                  ? 20
-                  : 14, 
-                fontWeight: FontWeight.bold, 
-                color: page == 0 ? Color.fromRGBO(28, 28, 28, 1) : Color.fromRGBO(118,109,109, 1),
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  color: Color.fromRGBO(28, 28, 28, 1),
+                  width: page == 0 ? 2 : 0.5
+                )
               ),
-              textAlign: TextAlign.center,
+            ),
+            child: FlatButton(
+              onPressed: () {
+                print('pressed Projetos');
+                // pageController.jumpToPage(0);
+                pageController.animateToPage(0, duration: Duration(seconds: 2), curve: Curves.easeInOut);
+                setState(() {
+                  page = 0;
+                });
+              }, 
+              focusColor: Color.fromRGBO(28, 28, 28, 1),
+              splashColor: Color.fromRGBO(28, 28, 28, 1),                                  
+              child: Text('PROJETOS',
+                style: GoogleFonts.pTSans(
+                  fontSize: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
+                    ? 20
+                    : 14, 
+                  fontWeight: FontWeight.bold, 
+                  color: page == 0 ? Color.fromRGBO(28, 28, 28, 1) : Color.fromRGBO(118,109,109, 1),
+                ),
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(right: 40.0),
-          child: FlatButton(
-            onPressed: () {
-              print('pressed Livros');
-              // pageController.jumpToPage(1);
-              pageController.animateToPage(1, duration: Duration(seconds: 2), curve: Curves.easeInOut);
-              setState(() {
-                page = 1;
-              });
-            }, 
-            focusColor: Color.fromRGBO(28, 28, 28, 1),
-            splashColor: Color.fromRGBO(28, 28, 28, 1),
-            child: Text('LIVROS',
-              style: GoogleFonts.pTSans(
-                fontSize: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
-                  ? 20
-                  : 14,  
-                fontWeight: FontWeight.bold, 
-                color: page == 1 ? Color.fromRGBO(28, 28, 28, 1) : Color.fromRGBO(118,109,109, 1)
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  color: Color.fromRGBO(28, 28, 28, 1),
+                  width: page == 1 ? 2 : 0.5
+                )
               ),
-              textAlign: TextAlign.center,
+            ),
+            child: FlatButton(
+              onPressed: () {
+                print('pressed Livros');
+                // pageController.jumpToPage(1);
+                pageController.animateToPage(1, duration: Duration(seconds: 2), curve: Curves.easeInOut);
+                setState(() {
+                  page = 1;
+                });
+              }, 
+              focusColor: Color.fromRGBO(28, 28, 28, 1),
+              splashColor: Color.fromRGBO(28, 28, 28, 1),
+              child: Text('LIVROS',
+                style: GoogleFonts.pTSans(
+                  fontSize: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
+                    ? 20
+                    : 14,  
+                  fontWeight: FontWeight.bold, 
+                  color: page == 1 ? Color.fromRGBO(28, 28, 28, 1) : Color.fromRGBO(118,109,109, 1)
+                ),
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(right: 40.0),
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  color: Color.fromRGBO(28, 28, 28, 1),
+                  width: page == 2 ? 2 : 0.5
+                )
+              ),
+            ),
+            child: FlatButton(
+              onPressed: () {
+                print('pressed Fotos');
+                // pageController.jumpToPage(2);
+                pageController.animateToPage(2, duration: Duration(seconds: 2), curve: Curves.easeInOut);
+                setState(() {
+                  page = 2;
+                });
+              }, 
+              focusColor: Color.fromRGBO(28, 28, 28, 1),
+              splashColor: Color.fromRGBO(28, 28, 28, 1),
+              child: Text('FOTOS',
+                style: GoogleFonts.pTSans(
+                  fontSize: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
+                    ? 20
+                    : 14,  
+                  fontWeight: FontWeight.bold, 
+                  color: page == 2 ? Color.fromRGBO(28, 28, 28, 1) : Color.fromRGBO(118,109,109, 1),
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+        ),
+        Container(
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(
+                color: Color.fromRGBO(28, 28, 28, 1),
+                width: page == 3 ? 2 : 0.5
+              )
+            ),
+          ),
           child: FlatButton(
             onPressed: () {
-              print('pressed Fotos');
-              // pageController.jumpToPage(2);
-              pageController.animateToPage(2, duration: Duration(seconds: 2), curve: Curves.easeInOut);
+              print('pressed About');
+              // pageController.jumpToPage(3);
+              pageController.animateToPage(3, duration: Duration(seconds: 2), curve: Curves.easeInOut);
               setState(() {
-                page = 2;
+                page = 3;
               });
             }, 
             focusColor: Color.fromRGBO(28, 28, 28, 1),
             splashColor: Color.fromRGBO(28, 28, 28, 1),
-            child: Text('FOTOS',
+            child: Text('SOBRE',
               style: GoogleFonts.pTSans(
                 fontSize: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
                   ? 20
                   : 14,  
                 fontWeight: FontWeight.bold, 
-                color: page == 2 ? Color.fromRGBO(28, 28, 28, 1) : Color.fromRGBO(118,109,109, 1),
+                color: page == 3 ? Color.fromRGBO(28, 28, 28, 1) : Color.fromRGBO(118,109,109, 1),
               ),
               textAlign: TextAlign.center,
             ),
           ),
         ),
-        FlatButton(
-          onPressed: () {
-            print('pressed About');
-            // pageController.jumpToPage(3);
-            pageController.animateToPage(3, duration: Duration(seconds: 2), curve: Curves.easeInOut);
-            setState(() {
-              page = 3;
-            });
-          }, 
-          focusColor: Color.fromRGBO(28, 28, 28, 1),
-          splashColor: Color.fromRGBO(28, 28, 28, 1),
-          child: Text('SOBRE',
-            style: GoogleFonts.pTSans(
-              fontSize: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
-                ? 20
-                : 14,  
-              fontWeight: FontWeight.bold, 
-              color: page == 3 ? Color.fromRGBO(28, 28, 28, 1) : Color.fromRGBO(118,109,109, 1),
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ),
-        Expanded(child: Container()),
+        sizingInformation.deviceScreenType == DeviceScreenType.Desktop ? Expanded(child: Container()) : Container(),
         sizingInformation.deviceScreenType == DeviceScreenType.Desktop 
           ? RaisedButton(
             onPressed: () {
