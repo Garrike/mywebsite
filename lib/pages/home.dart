@@ -11,15 +11,8 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 import '../services.dart';
 
-double altura = 486.50, largura = 0;
 PageController pageController = PageController(initialPage: 0);
 int page = 0;
-List<Icon> icons = [
-  Icon(Icons.star),
-  Icon(Icons.navigation),
-  Icon(Icons.golf_course)
-];
-List<Color> colors = [Colors.blue, Colors.tealAccent, Colors.redAccent];
 ScrollController _semicircleController = ScrollController();
 
 class Home extends StatefulWidget {
@@ -119,10 +112,12 @@ class _HomeState extends State<Home> {
               top: 0,//-20,
               left: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
                 ? (MediaQuery.of(context).size.width / 2) - 180
-                : MediaQuery.of(context).size.width / 2 - 170,//132,
+                : MediaQuery.of(context).size.width / 2 - 170, //132,
               child: Container(
                 height: MediaQuery.of(context).size.height * 0.3,
-                width: 1366 / 4, //MediaQuery.of(context).size.width / 4,
+                width: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
+                  ? MediaQuery.of(context).size.width / 4
+                  : MediaQuery.of(context).size.width, //1366 / 4,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage('images/teste.png'),
@@ -159,8 +154,12 @@ class _HomeState extends State<Home> {
 
   Widget timelinePages (SizingInformation sizingInformation) {
     return Container(
-      height: 486.49,
-      width: MediaQuery.of(context).size.width * (3 / 5),
+      height: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
+        ? 486.49
+        : 650,
+      width: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
+        ? MediaQuery.of(context).size.width * (3 / 5)
+        : MediaQuery.of(context).size.width * 0.95,
       // width: 1366 * (6 / 10),
       color: Color.fromRGBO(238, 245, 246, 1),
       child: Column(
@@ -225,147 +224,136 @@ class _HomeState extends State<Home> {
   Widget linePages (SizingInformation sizingInformation) {
     return Wrap(
       alignment: WrapAlignment.center,
+      spacing: 10,
       // runAlignment: WrapAlignment.center,
       crossAxisAlignment: WrapCrossAlignment.center,
       // verticalDirection: VerticalDirection.up,
       children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.only(right: 40.0),
-          child: Container(
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                  color: Color.fromRGBO(28, 28, 28, 1),
-                  width: page == 0 ? 2 : 0.5
-                )
-              ),
+        Container(
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(
+                color: Color.fromRGBO(28, 28, 28, 1),
+                width: page == 0 ? 2 : 0.5
+              )
             ),
-            child: FlatButton(
-              onPressed: () {
-                print('pressed Projetos');
-                // pageController.jumpToPage(0);
-                pageController.animateToPage(0, duration: Duration(seconds: 2), curve: Curves.easeInOut);
-                setState(() {
-                  page = 0;
-                });
-              }, 
-              focusColor: Color.fromRGBO(28, 28, 28, 1),
-              splashColor: Color.fromRGBO(28, 28, 28, 1),                                  
-              child: Text('PROJETOS',
-                style: GoogleFonts.pTSans(
-                  fontSize: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
-                    ? 20
-                    : 14, 
-                  fontWeight: FontWeight.bold, 
-                  color: page == 0 ? Color.fromRGBO(28, 28, 28, 1) : Color.fromRGBO(118,109,109, 1),
-                ),
-                textAlign: TextAlign.center,
+          ),
+          child: FlatButton(
+            onPressed: () {
+              print('pressed Projetos');
+              // pageController.jumpToPage(0);
+              pageController.animateToPage(0, duration: Duration(seconds: 2), curve: Curves.easeInOut);
+              setState(() {
+                page = 0;
+              });
+            }, 
+            focusColor: Color.fromRGBO(28, 28, 28, 1),
+            splashColor: Color.fromRGBO(28, 28, 28, 1),                                  
+            child: Text('PROJETOS',
+              style: GoogleFonts.pTSans(
+                fontSize: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
+                  ? 20
+                  : 14, 
+                fontWeight: FontWeight.bold, 
+                color: page == 0 ? Color.fromRGBO(28, 28, 28, 1) : Color.fromRGBO(118,109,109, 1),
               ),
+              textAlign: TextAlign.center,
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(right: 40.0),
-          child: Container(
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                  color: Color.fromRGBO(28, 28, 28, 1),
-                  width: page == 1 ? 2 : 0.5
-                )
-              ),
+        Container(
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(
+                color: Color.fromRGBO(28, 28, 28, 1),
+                width: page == 1 ? 2 : 0.5
+              )
             ),
-            child: FlatButton(
-              onPressed: () {
-                print('pressed Livros');
-                // pageController.jumpToPage(1);
-                pageController.animateToPage(1, duration: Duration(seconds: 2), curve: Curves.easeInOut);
-                setState(() {
-                  page = 1;
-                });
-              }, 
-              focusColor: Color.fromRGBO(28, 28, 28, 1),
-              splashColor: Color.fromRGBO(28, 28, 28, 1),
-              child: Text('LIVROS',
-                style: GoogleFonts.pTSans(
-                  fontSize: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
-                    ? 20
-                    : 14,  
-                  fontWeight: FontWeight.bold, 
-                  color: page == 1 ? Color.fromRGBO(28, 28, 28, 1) : Color.fromRGBO(118,109,109, 1)
-                ),
-                textAlign: TextAlign.center,
+          ),
+          child: FlatButton(
+            onPressed: () {
+              print('pressed Livros');
+              // pageController.jumpToPage(1);
+              pageController.animateToPage(1, duration: Duration(seconds: 2), curve: Curves.easeInOut);
+              setState(() {
+                page = 1;
+              });
+            }, 
+            focusColor: Color.fromRGBO(28, 28, 28, 1),
+            splashColor: Color.fromRGBO(28, 28, 28, 1),
+            child: Text('LIVROS',
+              style: GoogleFonts.pTSans(
+                fontSize: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
+                  ? 20
+                  : 14,  
+                fontWeight: FontWeight.bold, 
+                color: page == 1 ? Color.fromRGBO(28, 28, 28, 1) : Color.fromRGBO(118,109,109, 1)
               ),
+              textAlign: TextAlign.center,
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(right: 40.0),
-          child: Container(
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                  color: Color.fromRGBO(28, 28, 28, 1),
-                  width: page == 2 ? 2 : 0.5
-                )
-              ),
+        Container(
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(
+                color: Color.fromRGBO(28, 28, 28, 1),
+                width: page == 2 ? 2 : 0.5
+              )
             ),
-            child: FlatButton(
-              onPressed: () {
-                print('pressed Fotos');
-                // pageController.jumpToPage(2);
-                pageController.animateToPage(2, duration: Duration(seconds: 2), curve: Curves.easeInOut);
-                setState(() {
-                  page = 2;
-                });
-              }, 
-              focusColor: Color.fromRGBO(28, 28, 28, 1),
-              splashColor: Color.fromRGBO(28, 28, 28, 1),
-              child: Text('FOTOS',
-                style: GoogleFonts.pTSans(
-                  fontSize: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
-                    ? 20
-                    : 14,  
-                  fontWeight: FontWeight.bold, 
-                  color: page == 2 ? Color.fromRGBO(28, 28, 28, 1) : Color.fromRGBO(118,109,109, 1),
-                ),
-                textAlign: TextAlign.center,
+          ),
+          child: FlatButton(
+            onPressed: () {
+              print('pressed Fotos');
+              // pageController.jumpToPage(2);
+              pageController.animateToPage(2, duration: Duration(seconds: 2), curve: Curves.easeInOut);
+              setState(() {
+                page = 2;
+              });
+            }, 
+            focusColor: Color.fromRGBO(28, 28, 28, 1),
+            splashColor: Color.fromRGBO(28, 28, 28, 1),
+            child: Text('FOTOS',
+              style: GoogleFonts.pTSans(
+                fontSize: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
+                  ? 20
+                  : 14,  
+                fontWeight: FontWeight.bold, 
+                color: page == 2 ? Color.fromRGBO(28, 28, 28, 1) : Color.fromRGBO(118,109,109, 1),
               ),
+              textAlign: TextAlign.center,
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(right: 40.0),
-          child: Container(
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                  color: Color.fromRGBO(28, 28, 28, 1),
-                  width: page == 3 ? 2 : 0.5
-                )
-              ),
+        Container(
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(
+                color: Color.fromRGBO(28, 28, 28, 1),
+                width: page == 3 ? 2 : 0.5
+              )
             ),
-            child: FlatButton(
-              onPressed: () {
-                print('pressed About');
-                // pageController.jumpToPage(3);
-                pageController.animateToPage(3, duration: Duration(seconds: 2), curve: Curves.easeInOut);
-                setState(() {
-                  page = 3;
-                });
-              }, 
-              focusColor: Color.fromRGBO(28, 28, 28, 1),
-              splashColor: Color.fromRGBO(28, 28, 28, 1),
-              child: Text('SOBRE',
-                style: GoogleFonts.pTSans(
-                  fontSize: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
-                    ? 20
-                    : 14,  
-                  fontWeight: FontWeight.bold, 
-                  color: page == 3 ? Color.fromRGBO(28, 28, 28, 1) : Color.fromRGBO(118,109,109, 1),
-                ),
-                textAlign: TextAlign.center,
+          ),
+          child: FlatButton(
+            onPressed: () {
+              print('pressed About');
+              // pageController.jumpToPage(3);
+              pageController.animateToPage(3, duration: Duration(seconds: 2), curve: Curves.easeInOut);
+              setState(() {
+                page = 3;
+              });
+            }, 
+            focusColor: Color.fromRGBO(28, 28, 28, 1),
+            splashColor: Color.fromRGBO(28, 28, 28, 1),
+            child: Text('SOBRE',
+              style: GoogleFonts.pTSans(
+                fontSize: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
+                  ? 20
+                  : 14,  
+                fontWeight: FontWeight.bold, 
+                color: page == 3 ? Color.fromRGBO(28, 28, 28, 1) : Color.fromRGBO(118,109,109, 1),
               ),
+              textAlign: TextAlign.center,
             ),
           ),
         ),

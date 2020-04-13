@@ -14,22 +14,22 @@ Widget orderTimeLine(List<Project> projects, ScrollController _semicircleControl
       border: Border(
         top: BorderSide(
           color: Color.fromRGBO(28, 28, 28, 1),
-          width: 0.4, 
+          width: 0.8, 
         ),
         bottom: BorderSide(
           color: Color.fromRGBO(28, 28, 28, 1),
-          width: 0.4, 
+          width: 0.8, 
         ),
       ),
     ),
     margin: EdgeInsets.only(
-      bottom: 5,//SizeConfig.safeBlockHorizontal * 3,
+      // bottom: 5,//SizeConfig.safeBlockHorizontal * 3,
       top: 5
     ),
     padding: EdgeInsets.only(
       top: 9,//SizeConfig.safeBlockHorizontal * 3,
       left: 9,//SizeConfig.safeBlockHorizontal * 7,
-      bottom: 9,//SizeConfig.safeBlockHorizontal * 3,
+      // bottom: 9,//SizeConfig.safeBlockHorizontal * 3,
     ),
     child: Scrollbar(
       child: timelineRow(projects, _semicircleController),
