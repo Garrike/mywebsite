@@ -6,6 +6,7 @@ import 'package:gabrielmoreira/widgets/dialog.dart';
 import 'package:gabrielmoreira/widgets/profile_desktop.dart';
 import 'package:gabrielmoreira/widgets/profile_mobile.dart';
 import 'package:gabrielmoreira/widgets/timeline.dart';
+import 'package:gabrielmoreira/widgets/timeline_mobile.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -112,7 +113,7 @@ class _HomeState extends State<Home> {
               top: 0,//-20,
               left: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
                 ? (MediaQuery.of(context).size.width / 2) - 180
-                : MediaQuery.of(context).size.width / 2 - 170, //132,
+                : 0,//MediaQuery.of(context).size.width / 2 - 170, //132,
               child: Container(
                 height: MediaQuery.of(context).size.height * 0.3,
                 width: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
@@ -121,7 +122,9 @@ class _HomeState extends State<Home> {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage('images/teste.png'),
-                    fit: BoxFit.cover),
+                    fit: sizingInformation.deviceScreenType == DeviceScreenType.Mobile
+                      ? BoxFit.fitWidth
+                      : BoxFit.cover),
                 ),
               ),
             ),
@@ -197,7 +200,9 @@ class _HomeState extends State<Home> {
                           // case ConnectionState.done:
                           //   return Text('Finalizado');
                           default: 
-                            return orderTimeLine(projects, _semicircleController);
+                            return sizingInformation.deviceScreenType == DeviceScreenType.Mobile
+                              ? orderTimeLineMobile(projects, _semicircleController)
+                              : orderTimeLine(projects, _semicircleController);
                         }
                       }
                     ),
