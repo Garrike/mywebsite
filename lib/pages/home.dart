@@ -4,6 +4,7 @@ import 'package:gabrielmoreira/models/project.dart';
 import 'package:gabrielmoreira/widgets/bookList.dart';
 import 'package:gabrielmoreira/widgets/dialog.dart';
 import 'package:gabrielmoreira/widgets/profile_desktop.dart';
+import 'package:gabrielmoreira/widgets/profile_mobile.dart';
 import 'package:gabrielmoreira/widgets/timeline.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -49,12 +50,13 @@ class _HomeState extends State<Home> {
                 ),
                 Container(
                   height: MediaQuery.of(context).size.height * 0.7,
+                  color: Color.fromRGBO(238, 245, 246, 1),
                   child: ScreenTypeLayout(
                     mobile: ListView(
                       children: <Widget>[
                         Column(
                           children: <Widget>[
-                            profileDesktop(context),
+                            profileMobile(context),
                             timelinePages(sizingInformation),
                           ],
                         ),
@@ -64,29 +66,20 @@ class _HomeState extends State<Home> {
                       children: <Widget>[
                         Column(
                           children: <Widget>[
-                            profileDesktop(context),
+                            profileMobile(context),
                             timelinePages(sizingInformation),
                           ],
                         ),
                       ],
                     ),
                     desktop: ListView(
-                      scrollDirection: Axis.horizontal,
+                      scrollDirection: Axis.vertical,
                       children: <Widget>[
-                        Container(
-                          // width: MediaQuery.of(context).size.width,
-                          width: 1366,
-                          child: ListView(
-                            scrollDirection: Axis.vertical,
-                            children: <Widget>[
-                              Row(
-                                children: <Widget>[
-                                  profileDesktop(context),
-                                  timelinePages(sizingInformation),
-                                ],
-                              ),
-                            ],
-                          ),
+                        Row(
+                          children: <Widget>[
+                            profileDesktop(context),
+                            timelinePages(sizingInformation),
+                          ],
                         ),
                       ],
                     ),
@@ -140,8 +133,8 @@ class _HomeState extends State<Home> {
             Positioned(
               top: (MediaQuery.of(context).size.height * 0.3) - 75,
               left: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
-                ? MediaQuery.of(context).size.width / 7 + 5
-                : MediaQuery.of(context).size.width / 2 - 70,
+                ? MediaQuery.of(context).size.width * (2 / 10) - 73 //MediaQuery.of(context).size.width / 7 + 5
+                : MediaQuery.of(context).size.width / 2 - 73,
               child: Container(
                 width: 150.0,
                 height: 150.0,
@@ -167,8 +160,8 @@ class _HomeState extends State<Home> {
   Widget timelinePages (SizingInformation sizingInformation) {
     return Container(
       height: 486.49,
-      // width: MediaQuery.of(context).size.width * (5 / 9),
-      width: 1366 * (6 / 10),
+      width: MediaQuery.of(context).size.width * (3 / 5),
+      // width: 1366 * (6 / 10),
       color: Color.fromRGBO(238, 245, 246, 1),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -230,9 +223,11 @@ class _HomeState extends State<Home> {
   }
 
   Widget linePages (SizingInformation sizingInformation) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
+    return Wrap(
+      alignment: WrapAlignment.center,
+      // runAlignment: WrapAlignment.center,
+      crossAxisAlignment: WrapCrossAlignment.center,
+      // verticalDirection: VerticalDirection.up,
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(right: 40.0),
@@ -339,41 +334,44 @@ class _HomeState extends State<Home> {
             ),
           ),
         ),
-        Container(
-          decoration: BoxDecoration(
-            border: Border(
-              bottom: BorderSide(
-                color: Color.fromRGBO(28, 28, 28, 1),
-                width: page == 3 ? 2 : 0.5
-              )
-            ),
-          ),
-          child: FlatButton(
-            onPressed: () {
-              print('pressed About');
-              // pageController.jumpToPage(3);
-              pageController.animateToPage(3, duration: Duration(seconds: 2), curve: Curves.easeInOut);
-              setState(() {
-                page = 3;
-              });
-            }, 
-            focusColor: Color.fromRGBO(28, 28, 28, 1),
-            splashColor: Color.fromRGBO(28, 28, 28, 1),
-            child: Text('SOBRE',
-              style: GoogleFonts.pTSans(
-                fontSize: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
-                  ? 20
-                  : 14,  
-                fontWeight: FontWeight.bold, 
-                color: page == 3 ? Color.fromRGBO(28, 28, 28, 1) : Color.fromRGBO(118,109,109, 1),
+        Padding(
+          padding: const EdgeInsets.only(right: 40.0),
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  color: Color.fromRGBO(28, 28, 28, 1),
+                  width: page == 3 ? 2 : 0.5
+                )
               ),
-              textAlign: TextAlign.center,
+            ),
+            child: FlatButton(
+              onPressed: () {
+                print('pressed About');
+                // pageController.jumpToPage(3);
+                pageController.animateToPage(3, duration: Duration(seconds: 2), curve: Curves.easeInOut);
+                setState(() {
+                  page = 3;
+                });
+              }, 
+              focusColor: Color.fromRGBO(28, 28, 28, 1),
+              splashColor: Color.fromRGBO(28, 28, 28, 1),
+              child: Text('SOBRE',
+                style: GoogleFonts.pTSans(
+                  fontSize: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
+                    ? 20
+                    : 14,  
+                  fontWeight: FontWeight.bold, 
+                  color: page == 3 ? Color.fromRGBO(28, 28, 28, 1) : Color.fromRGBO(118,109,109, 1),
+                ),
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
         ),
-        sizingInformation.deviceScreenType == DeviceScreenType.Desktop ? Expanded(child: Container()) : Container(),
-        sizingInformation.deviceScreenType == DeviceScreenType.Desktop 
-          ? RaisedButton(
+        // sizingInformation.deviceScreenType == DeviceScreenType.Desktop ? Expanded(child: Container()) : Container(),
+        // sizingInformation.deviceScreenType == DeviceScreenType.Desktop 
+          RaisedButton(
             onPressed: () {
               print('FOLLOW');
               showAlertDialog(context);
@@ -386,8 +384,8 @@ class _HomeState extends State<Home> {
                 fontSize: 20, fontWeight: FontWeight.bold, color: Color.fromRGBO(238, 245, 246, 1),
               ),
             ),
-          )
-          : Container(),
+          ),
+          // : Container(),
         Container(width: 20,),
       ],
     );

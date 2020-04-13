@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:js' as js;
 
-Widget profileDesktop (BuildContext context) {
-  return Expanded(
+Widget profileMobile (BuildContext context) {
+  return Container(
     // height: MediaQuery.of(context).size.height * 0.7,
-    // height: 560,//486.49,
+    height: 560,//486.49,
     // width: MediaQuery.of(context).size.width * (4 / 10),
     // width: 1366 * (4 / 10),
     // color: Color.fromRGBO(238, 245, 246, 1),
