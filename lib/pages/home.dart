@@ -148,6 +148,10 @@ class _HomeState extends State<Home> {
                   ),
                 ),
               ),
+              // child: FadeInImage(
+              //   image: AssetImage("images/profileImage.png"), 
+              //   placeholder: kImage,
+              // )
             ),
           ],
         ),

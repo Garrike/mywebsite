@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:gabrielmoreira/pages/home.dart';
+import 'package:gabrielmoreira/pages/home_mobile.dart';
 // import 'package:gabrielmoreira/pages/home_responsive.dart';
 // import 'package:gabrielmoreira/services.dart';
 
@@ -16,10 +17,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'My WebSite',
+      title: 'Gabriel Moreira',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.black,
       ),
       home: InitialPage(),
     );
@@ -42,6 +43,6 @@ class _InitialPageState extends State<InitialPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Home();
+    return HomeMobile();
   }
 }
