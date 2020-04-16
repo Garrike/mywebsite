@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gabrielmoreira/models/project.dart';
 import 'package:gabrielmoreira/widgets/bookList.dart';
 import 'package:gabrielmoreira/widgets/dialog.dart';
+import 'package:gabrielmoreira/widgets/profile_mobile.dart';
 // import 'package:gabrielmoreira/widgets/profile_desktop.dart';
 // import 'package:gabrielmoreira/widgets/profile_mobile.dart';
 import 'package:gabrielmoreira/widgets/timeline.dart';
@@ -13,6 +14,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 import '../services.dart';
 
 ScrollController _controller;
+List<Project> projects = [];
 PageController pageController = PageController(initialPage: 0);
 int page = 0;
 double top = 0, opacity = 1, heightTopo = 145, colorValue = 0;
@@ -31,7 +33,7 @@ class _HomeMobileState extends State<HomeMobile> {
     super.initState();
     getUser();
     _controller = ScrollController();
-
+    
     _controller.addListener(() {
       if(_controller.offset <= 180 && !_controller.position.outOfRange) {
         print(_controller.offset);
@@ -78,7 +80,7 @@ class _HomeMobileState extends State<HomeMobile> {
               pinned: true, 
               snap: false,              
               flexibleSpace: FlexibleSpaceBar(
-                collapseMode: CollapseMode.none,
+                // collapseMode: CollapseMode.none,
                 centerTitle: false,
                 // titlePadding: EdgeInsets.only(top: 265 - top),
                 title: Text(
@@ -153,179 +155,18 @@ class _HomeMobileState extends State<HomeMobile> {
                 ),
               ),
             ),
-            // _silver(),
             SliverList(
               delegate: SliverChildListDelegate([
-                Container(
-                  height: 800,
-                  width: 300,
-                  child: Center(
-                    child: Text('Centro da Página'),
-                  ),
-                ),  
+                Column(
+                  children: <Widget>[
+                    profileMobile(context),
+                    timelinePages(sizingInformation),
+                  ],
+                ), 
               ])
-            ),            
-            // Container(
-            //   height: MediaQuery.of(context).size.height * 0.7,
-            //   color: Color.fromRGBO(238, 245, 246, 1),
-            //   child: ScreenTypeLayout(
-            //     mobile: ListView(
-            //       children: <Widget>[
-            //         Column(
-            //           children: <Widget>[
-            //             profileMobile(context),
-            //             timelinePages(sizingInformation),
-            //           ],
-            //         ),
-            //       ],
-            //     ),
-            //     tablet: ListView(
-            //       children: <Widget>[
-            //         Column(
-            //           children: <Widget>[
-            //             profileMobile(context),
-            //             timelinePages(sizingInformation),
-            //           ],
-            //         ),
-            //       ],
-            //     ),
-            //     desktop: ListView(
-            //       scrollDirection: Axis.vertical,
-            //       children: <Widget>[
-            //         Row(
-            //           children: <Widget>[
-            //             profileDesktop(context),
-            //             timelinePages(sizingInformation),
-            //           ],
-            //         ),
-            //       ],
-            //     ),
-            //   ),
-            // ),
+            ),
           ],
         ),
-        // body: Stack(
-        //   children: <Widget>[
-        //     Column(
-        //       children: <Widget>[
-        //         Container(
-        //           height: MediaQuery.of(context).size.height * 0.3,
-        //           width: MediaQuery.of(context).size.width,
-        //           color: Color.fromRGBO(28, 28, 28, 1),
-        //         ),
-        //         Container(
-        //           height: MediaQuery.of(context).size.height * 0.7,
-        //           color: Color.fromRGBO(238, 245, 246, 1),
-        //           child: ScreenTypeLayout(
-        //             mobile: ListView(
-        //               children: <Widget>[
-        //                 Column(
-        //                   children: <Widget>[
-        //                     profileMobile(context),
-        //                     timelinePages(sizingInformation),
-        //                   ],
-        //                 ),
-        //               ],
-        //             ),
-        //             tablet: ListView(
-        //               children: <Widget>[
-        //                 Column(
-        //                   children: <Widget>[
-        //                     profileMobile(context),
-        //                     timelinePages(sizingInformation),
-        //                   ],
-        //                 ),
-        //               ],
-        //             ),
-        //             desktop: ListView(
-        //               scrollDirection: Axis.vertical,
-        //               children: <Widget>[
-        //                 Row(
-        //                   children: <Widget>[
-        //                     profileDesktop(context),
-        //                     timelinePages(sizingInformation),
-        //                   ],
-        //                 ),
-        //               ],
-        //             ),
-        //           ),
-        //         ),
-        //       ],
-        //     ),
-        //     Positioned(
-        //       top: 0,//-20,
-        //       left: 0,//132,
-              // child: Container(
-              //   height: MediaQuery.of(context).size.height * 0.3,
-              //   width: MediaQuery.of(context).size.width,
-              //   decoration: BoxDecoration(
-              //     image: DecorationImage(
-              //       image: AssetImage('images/sky.png'),
-              //       fit: BoxFit.fitWidth),
-              //   ),
-              // ),
-        //     ),
-        //     sizingInformation.deviceScreenType == DeviceScreenType.Desktop
-              // ? Positioned(
-              //   top: MediaQuery.of(context).size.height * 0.3 - 110,//(MediaQuery.of(context).size.height * 0.3)*2.1 / 3, //138
-              //   right: 70,
-              //   child: Container(
-              //     height: 150,//MediaQuery.of(context).size.height * 0.3,
-              //     width: 300,//MediaQuery.of(context).size.width / 4,
-              //     decoration: BoxDecoration(
-              //       image: DecorationImage(
-              //         image: AssetImage('images/TakeaBreak2.png'),
-              //         fit: BoxFit.cover),
-              //     ),
-              //   ),
-              // )
-        //       : Container(),
-            // Positioned(
-            //   top: 0,//-20,
-            //   left: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
-            //     ? (MediaQuery.of(context).size.width / 2) - 180
-            //     : 0,//MediaQuery.of(context).size.width / 2 - 170, //132,
-            //   child: Container(
-            //     height: MediaQuery.of(context).size.height * 0.3,
-            //     width: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
-            //       ? MediaQuery.of(context).size.width / 4
-            //       : MediaQuery.of(context).size.width, //1366 / 4,
-            //     decoration: BoxDecoration(
-            //       image: DecorationImage(
-            //         image: AssetImage('images/teste.png'),
-            //         fit: sizingInformation.deviceScreenType == DeviceScreenType.Mobile
-            //           ? BoxFit.fitWidth
-            //           : BoxFit.cover),
-            //     ),
-            //   ),
-            // ),
-            // Positioned(
-            //   top: (MediaQuery.of(context).size.height * 0.3) - 75,
-            //   left: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
-            //     ? MediaQuery.of(context).size.width * (2 / 10) - 73 //MediaQuery.of(context).size.width / 7 + 5
-            //     : MediaQuery.of(context).size.width / 2 - 73,
-            //   child: Container(
-            //     width: 150.0,
-            //     height: 150.0,
-            //     decoration: new BoxDecoration(
-            //       shape: BoxShape.circle,
-            //       image: new DecorationImage(
-            //         fit: BoxFit.cover,
-            //         image: AssetImage("images/profileImage.png"),
-            //       ),
-            //       border: Border.all(
-            //         width: 2, 
-            //         color: Color.fromRGBO(238, 245, 246, 1)
-            //       ),
-            //     ),
-            //   ),
-            //   // child: FadeInImage(
-            //   //   image: AssetImage("images/profileImage.png"), 
-            //   //   placeholder: kImage,
-            //   // )
-            // ),
-        //   ],
-        // ),
       ),
     );
   }
@@ -364,7 +205,9 @@ class _HomeMobileState extends State<HomeMobile> {
                       future: getProjects(),
                       builder: (context, snapshot) {
                         if(snapshot.hasError) return Text('Error');
-                        List<Project> projects = snapshot.data;
+                        if(projects != null){
+                          if(projects.isEmpty) projects = snapshot.data;
+                        } else projects = snapshot.data;
                         switch (snapshot.connectionState) {
                           case ConnectionState.none:
                             return Text('Não conectado');
@@ -556,16 +399,6 @@ class _HomeMobileState extends State<HomeMobile> {
           // : Container(),
         Container(width: 20,),
       ],
-    );
-  }
-
-  SliverToBoxAdapter _silver() {
-    return SliverToBoxAdapter(      
-      child: Container(
-        color: Colors.white,
-        height: 30,
-        child: Center(child: Text('Engenharia'),)
-      ),
     );
   }
 }

@@ -1,8 +1,10 @@
 // import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:gabrielmoreira/pages/home.dart';
 // import 'package:gabrielmoreira/pages/home.dart';
 import 'package:gabrielmoreira/pages/home_mobile.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 // import 'package:gabrielmoreira/pages/home_responsive.dart';
 // import 'package:gabrielmoreira/services.dart';
 
@@ -43,6 +45,13 @@ class _InitialPageState extends State<InitialPage> {
 
   @override
   Widget build(BuildContext context) {
-    return HomeMobile();
+    return ResponsiveBuilder(
+      builder: (context, sizingInformation) =>  
+        ScreenTypeLayout(
+          mobile: HomeMobile(),
+          desktop: Home(),
+          tablet: Home(),
+        ),
+      );
   }
 }

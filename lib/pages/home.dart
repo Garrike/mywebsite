@@ -46,16 +46,16 @@ class _HomeState extends State<Home> {
                   height: MediaQuery.of(context).size.height * 0.7,
                   color: Color.fromRGBO(238, 245, 246, 1),
                   child: ScreenTypeLayout(
-                    mobile: ListView(
-                      children: <Widget>[
-                        Column(
-                          children: <Widget>[
-                            profileMobile(context),
-                            timelinePages(sizingInformation),
-                          ],
-                        ),
-                      ],
-                    ),
+                    // mobile: ListView(
+                    //   children: <Widget>[
+                    //     Column(
+                    //       children: <Widget>[
+                    //         profileMobile(context),
+                    //         timelinePages(sizingInformation),
+                    //       ],
+                    //     ),
+                    //   ],
+                    // ),
                     tablet: ListView(
                       children: <Widget>[
                         Column(
