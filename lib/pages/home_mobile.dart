@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:gabrielmoreira/models/project.dart';
 import 'package:gabrielmoreira/widgets/bookList.dart';
 import 'package:gabrielmoreira/widgets/dialog.dart';
-import 'package:gabrielmoreira/widgets/profile_desktop.dart';
-import 'package:gabrielmoreira/widgets/profile_mobile.dart';
+// import 'package:gabrielmoreira/widgets/profile_desktop.dart';
+// import 'package:gabrielmoreira/widgets/profile_mobile.dart';
 import 'package:gabrielmoreira/widgets/timeline.dart';
 import 'package:gabrielmoreira/widgets/timeline_mobile.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,6 +15,8 @@ import '../services.dart';
 ScrollController _controller;
 PageController pageController = PageController(initialPage: 0);
 int page = 0;
+double top = 0, opacity = 1, heightTopo = 145, colorValue = 0;
+Color titleColor = Color.fromRGBO(28, 28, 28, 1);
 ScrollController _semicircleController = ScrollController();
 
 class HomeMobile extends StatefulWidget {
@@ -23,6 +25,7 @@ class HomeMobile extends StatefulWidget {
 }
 
 class _HomeMobileState extends State<HomeMobile> {
+
   @override
   void initState() {
     super.initState();
@@ -30,32 +33,37 @@ class _HomeMobileState extends State<HomeMobile> {
     _controller = ScrollController();
 
     _controller.addListener(() {
-      if (_controller.offset > 220 && !_controller.position.outOfRange) {
-        print(_controller.offset);
-        print(' Is Collapsing');
-        // if(!silverCollapsed){
-
-        //   // do what ever you want when silver is collapsing !
-
-        //   myTitle = "silver collapsed !";
-        //   silverCollapsed = true;
-        //   setState(() {});
-        // }
-      }
-      if (_controller.offset <= 220 && !_controller.position.outOfRange) {
+      if(_controller.offset <= 180 && !_controller.position.outOfRange) {
         print(_controller.offset);
         print(' Is Expanding');
-      //  if(silverCollapsed){
+        setState(() {    
+          if(0.025 * _controller.offset <= 1) {
+            opacity = 1 - (0.025 * _controller.offset);
+          }           
+          top = _controller.offset;
+        });
 
-      //     // do what ever you want when silver is expanding !
-      //     setState(() {});
-      //  }
+        if(_controller.offset > 40) {
+          setState(() {
+            titleColor = Color.fromRGBO(238, 245, 246, 1);
+          });
+        } else {
+          setState(() {
+            titleColor = Color.fromRGBO(28, 28, 28, 1);
+          });
+        }
+
+        if(_controller.offset <= 72.5) {
+          setState(() {
+            heightTopo = 145 - 2*_controller.offset;
+          });
+          print('Height: $heightTopo');
+        }
       }
     });
   }
   @override
   Widget build(BuildContext context) {
-    print(MediaQuery.of(context).size.width);
     return ResponsiveBuilder(
       builder: (context, sizingInformation) => Scaffold(
         backgroundColor: Color.fromRGBO(238, 245, 246, 1),
@@ -64,34 +72,39 @@ class _HomeMobileState extends State<HomeMobile> {
           slivers: <Widget>[            
             SliverAppBar(
               elevation: 0,
-              expandedHeight: MediaQuery.of(context).size.height * 0.3 + 145,
+              expandedHeight: 180 + heightTopo,
               backgroundColor: Color.fromRGBO(28, 28, 28, 1),
               floating: false, 
               pinned: true, 
               snap: false,              
               flexibleSpace: FlexibleSpaceBar(
                 collapseMode: CollapseMode.none,
-                centerTitle: true,
-                // titlePadding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.3 + 85),
+                centerTitle: false,
+                // titlePadding: EdgeInsets.only(top: 265 - top),
                 title: Text(
                   'Gabriel Moreira',
                   style: GoogleFonts.reemKufi(
                     fontSize: 22, 
                     fontWeight: FontWeight.bold,
-                    color: Color.fromRGBO(28, 28, 28, 1)
+                    color: titleColor
                   )
                 ),
                 background: Stack(
                   children: <Widget>[
                     Padding(
-                      padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.3),
+                      padding: EdgeInsets.only(top: 180),
                       child: Container(                        
-                        height: 145,
-                        color: Colors.white,
+                        height: heightTopo,
+                        color: Color.fromRGBO(238, 245, 246, 1),
                       ),
                     ),
                     Container(
-                      height: MediaQuery.of(context).size.height * 0.3,
+                      height: 180,
+                      width: MediaQuery.of(context).size.width,
+                      color: Color.fromRGBO(28, 28, 28, 1),
+                    ),
+                    Container(
+                      height: 180,//MediaQuery.of(context).size.height * 0.3,
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
                         image: DecorationImage(
@@ -99,57 +112,39 @@ class _HomeMobileState extends State<HomeMobile> {
                           fit: BoxFit.fitWidth),
                       ),
                     ),
-                    sizingInformation.deviceScreenType != DeviceScreenType.Mobile
-                      ? Positioned(
-                          top: MediaQuery.of(context).size.height * 0.3 - 110,//(MediaQuery.of(context).size.height * 0.3)*2.1 / 3, //138
-                          right: 70,
-                          child: Container(
-                            height: 150,//MediaQuery.of(context).size.height * 0.3,
-                            width: 300,//MediaQuery.of(context).size.width / 4,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage('images/TakeaBreak2.png'),
-                                fit: BoxFit.cover),
-                            ),
-                          ),
-                        )
-                      : Container(),
-                    Positioned(
-                      top: 0,//-20,
-                      left: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
-                        ? (MediaQuery.of(context).size.width / 2) - 180
-                        : 0,//MediaQuery.of(context).size.width / 2 - 170, //132,
-                      child: Container(
-                        height: MediaQuery.of(context).size.height * 0.3,
-                        width: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
-                          ? MediaQuery.of(context).size.width / 4
-                          : MediaQuery.of(context).size.width, //1366 / 4,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage('images/teste.png'),
-                            fit: sizingInformation.deviceScreenType == DeviceScreenType.Mobile
-                              ? BoxFit.fitWidth
-                              : BoxFit.cover),
-                        ),
+                    Container(
+                      height: 180,
+                      width: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
+                        ? MediaQuery.of(context).size.width / 4
+                        : MediaQuery.of(context).size.width, //1366 / 4,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('images/teste.png'),
+                          fit: sizingInformation.deviceScreenType == DeviceScreenType.Mobile
+                            ? BoxFit.fitWidth
+                            : BoxFit.cover),
                       ),
                     ),
                     Positioned(
-                      top: (MediaQuery.of(context).size.height * 0.3) - 75,
+                      top: 105 - top,
                       left: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
                         ? MediaQuery.of(context).size.width * (2 / 10) - 73 //MediaQuery.of(context).size.width / 7 + 5
                         : MediaQuery.of(context).size.width / 2 - 73,
-                      child: Container(
-                        width: 150.0,
-                        height: 150.0,
-                        decoration: new BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: new DecorationImage(
-                            fit: BoxFit.cover,
-                            image: AssetImage("images/profileImage.png"),
-                          ),
-                          border: Border.all(
-                            width: 2, 
-                            color: Color.fromRGBO(238, 245, 246, 1)
+                      child: Opacity(
+                        opacity: opacity,
+                        child: Container(
+                          width: 150.0,
+                          height: 150.0,
+                          decoration: new BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: new DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage("images/profileImage.png"),
+                            ),
+                            border: Border.all(
+                              width: 2, 
+                              color: Color.fromRGBO(238, 245, 246, 1)
+                            ),
                           ),
                         ),
                       ),
@@ -158,11 +153,11 @@ class _HomeMobileState extends State<HomeMobile> {
                 ),
               ),
             ),
-            _silver(),
+            // _silver(),
             SliverList(
               delegate: SliverChildListDelegate([
                 Container(
-                  height: 60,
+                  height: 800,
                   width: 300,
                   child: Center(
                     child: Text('Centro da Página'),
@@ -565,7 +560,7 @@ class _HomeMobileState extends State<HomeMobile> {
   }
 
   SliverToBoxAdapter _silver() {
-    return SliverToBoxAdapter(
+    return SliverToBoxAdapter(      
       child: Container(
         color: Colors.white,
         height: 30,

@@ -1,7 +1,7 @@
 // import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:gabrielmoreira/pages/home.dart';
+// import 'package:gabrielmoreira/pages/home.dart';
 import 'package:gabrielmoreira/pages/home_mobile.dart';
 // import 'package:gabrielmoreira/pages/home_responsive.dart';
 // import 'package:gabrielmoreira/services.dart';
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'Gabriel Moreira',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.black,
+        primarySwatch: Colors.blueGrey
       ),
       home: InitialPage(),
     );
