@@ -167,7 +167,6 @@ class _HomeState extends State<Home> {
       width: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
         ? MediaQuery.of(context).size.width * (3 / 5)
         : MediaQuery.of(context).size.width * 0.95,
-      // width: 1366 * (6 / 10),
       color: Color.fromRGBO(238, 245, 246, 1),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
