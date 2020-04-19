@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:gabrielmoreira/models/project.dart';
+import 'package:gabrielmoreira/widgets/animated_timeline/price_tab.dart';
 import 'package:gabrielmoreira/widgets/bookList.dart';
 import 'package:gabrielmoreira/widgets/dialog.dart';
 import 'package:gabrielmoreira/widgets/profile_mobile.dart';
@@ -160,7 +161,19 @@ class _HomeMobileState extends State<HomeMobile> {
                 Column(
                   children: <Widget>[
                     profileMobile(context),
-                    timelinePages(sizingInformation),
+                    //timelinePages(sizingInformation),
+                    ConstrainedBox(
+                      constraints: new BoxConstraints(
+                        minHeight: 100, //viewportConstraints.maxHeight - 48.0,
+                      ),
+                      child: new IntrinsicHeight(
+                        child: PriceTab(
+                          height: 100,
+                          onPlaneFlightStart: () =>
+                            print('object')  // setState(() => showInputTabOptions = false),
+                        ),
+                      ),
+                    ),
                   ],
                 ), 
               ])
