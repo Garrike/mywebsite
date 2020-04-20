@@ -164,11 +164,11 @@ class _HomeMobileState extends State<HomeMobile> {
                     //timelinePages(sizingInformation),
                     ConstrainedBox(
                       constraints: new BoxConstraints(
-                        minHeight: 100, //viewportConstraints.maxHeight - 48.0,
+                        minHeight: 200, //viewportConstraints.maxHeight - 48.0,
                       ),
                       child: new IntrinsicHeight(
                         child: PriceTab(
-                          height: 100,
+                          height: 200,
                           onPlaneFlightStart: () =>
                             print('object')  // setState(() => showInputTabOptions = false),
                         ),
