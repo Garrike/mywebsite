@@ -198,7 +198,7 @@ Widget timelineRowMobile(List<Project> projetos, ScrollController _semicircleCon
             //     ],
             //   ),
             // ) : Expanded(flex: 4, child: Container()),
-            Expanded(
+            Flexible(
               flex: 1,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -243,16 +243,14 @@ Widget timelineRowMobile(List<Project> projetos, ScrollController _semicircleCon
                       ],
                     ),
                   ),
-                  Expanded(
-                    child: Container(
-                      width: 3,
-                      // height: 35,
-                      decoration: new BoxDecoration(
-                        color: Color.fromRGBO(28, 28, 28, 1),
-                        shape: BoxShape.rectangle,
-                      ),
-                      child: Text(""),
+                  Container(
+                    width: 3,
+                    height: 150,
+                    decoration: new BoxDecoration(
+                      color: Color.fromRGBO(28, 28, 28, 1),
+                      shape: BoxShape.rectangle,
                     ),
+                    child: Text(""),
                   ),
 
                   // (2 * index) + 1 < projetos.length ? Container(
