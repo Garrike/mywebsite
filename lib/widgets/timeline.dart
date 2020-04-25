@@ -45,13 +45,12 @@ Widget timelineRow(List<Project> projetos, ScrollController _semicircleControlle
     itemCount: projetos.length != null ? (projetos.length / 2).round() : 0,
     itemBuilder: (context, index) {
       return Container(
-        height: 440,
+        height: 450,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             (2 * index) < projetos.length ? Expanded(
-              flex: 4,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
@@ -69,137 +68,141 @@ Widget timelineRow(List<Project> projetos, ScrollController _semicircleControlle
                         color: Color.fromRGBO(39, 80, 115, 0.1),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            // mainAxisAlignment: MainAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              Container(
-                                height: 180,
-                                width: 300,
-                                // color: Color.fromRGBO(28, 28, 28, 1),
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: NetworkImage(projetos[2 * index].image), //'https://i.pinimg.com/564x/5e/22/57/5e2257e21795e60de9c58e59a6b05fb6.jpg'
-                                    fit: BoxFit.cover
-                                  )
+                          child: Container(
+                            width: 300,
+                            child: Column(
+                              // mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Container(
+                                  height: 180,
+                                  width: 300,
+                                  // color: Color.fromRGBO(28, 28, 28, 1),
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: NetworkImage(projetos[2 * index].image), //'https://i.pinimg.com/564x/5e/22/57/5e2257e21795e60de9c58e59a6b05fb6.jpg'
+                                      fit: BoxFit.cover
+                                    )
+                                  ),
                                 ),
-                              ),
-                              SizedBox(height: 5),
-                              Text('${projetos[2 * index].title}',
-                                style: GoogleFonts.robotoSlab(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
-                                textAlign: TextAlign.justify,
-                              ),
-                              Wrap(
-                                direction: Axis.horizontal,
-                                crossAxisAlignment: WrapCrossAlignment.center,
-                                children: <Widget>[
-                                  Text(
-                                    'Status: ${projetos[2 * index].status}',
-                                    style: GoogleFonts.robotoSlab(
-                                      fontSize: 12, 
-                                      fontWeight: FontWeight.bold,
-                                      color: Color.fromRGBO(118, 109, 109, 1),
+                                SizedBox(height: 5),
+                                Container(
+                                  width: 300,
+                                  child: Text('${projetos[2 * index].title}',
+                                    style: GoogleFonts.robotoSlab(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
+                                    textAlign: TextAlign.justify,
+                                  ),
+                                ),
+                                Text(
+                                  'Status: ${projetos[2 * index].status}',
+                                  style: GoogleFonts.robotoSlab(
+                                    fontSize: 12, 
+                                    fontWeight: FontWeight.bold,
+                                    color: Color.fromRGBO(118, 109, 109, 1),
+                                  ),
+                                ),
+                                Row(                                  
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[                                    
+                                    Expanded(child: Container()),
+                                    Text(
+                                      '${projetos[2 * index].likes}',
+                                      style: GoogleFonts.robotoSlab(
+                                        fontSize: 12, 
+                                        fontWeight: FontWeight.bold,
+                                        color: Color.fromRGBO(28, 28, 28, 0.8),
+                                      ),
                                     ),
-                                  ),
-                                  Expanded(child: Container()),
-                                  Text(
-                                    '${projetos[2 * index].likes}',
-                                    style: GoogleFonts.robotoSlab(
-                                      fontSize: 12, 
-                                      fontWeight: FontWeight.bold,
-                                      color: Color.fromRGBO(28, 28, 28, 0.8),
+                                    IconButton(
+                                      icon: Icon(Icons.favorite, color: Color.fromRGBO(28, 28, 28, 0.8), size: 16), 
+                                      onPressed: () {}
                                     ),
-                                  ),
-                                  IconButton(
-                                    icon: Icon(Icons.favorite, color: Color.fromRGBO(28, 28, 28, 0.8), size: 16), 
-                                    onPressed: () {}
-                                  ),
-                                  // SizedBox(width: 5,),
-                                  Text(
-                                    '${projetos[2 * index].comments.length}',
-                                    style: GoogleFonts.robotoSlab(
-                                      fontSize: 12, 
-                                      fontWeight: FontWeight.bold,
-                                      color: Color.fromRGBO(28, 28, 28, 0.8),
+                                    // SizedBox(width: 5,),
+                                    Text(
+                                      '${projetos[2 * index].comments.length}',
+                                      style: GoogleFonts.robotoSlab(
+                                        fontSize: 12, 
+                                        fontWeight: FontWeight.bold,
+                                        color: Color.fromRGBO(28, 28, 28, 0.8),
+                                      ),
                                     ),
-                                  ),
-                                  IconButton(
-                                    icon: Icon(Icons.comment, color: Color.fromRGBO(28, 28, 28, 0.8), size: 16), 
-                                    onPressed: () {}
-                                  ),
-                                ],
-                              ),
-                              Text('${projetos[2 * index].description}',
-                                style: GoogleFonts.reemKufi(fontSize: 16, color: Colors.black87),
-                                textAlign: TextAlign.justify,
-                                overflow: TextOverflow.ellipsis,
-                                softWrap: true
-                              ),
-                              SizedBox(height: 10),
-                              Wrap(
-                                direction: Axis.horizontal,
-                                children: <Widget>[
-                                  Container(
-                                    width: 180,
-                                    height: 25,
-                                    child: Center(
-                                      child: ListView.builder(
-                                        scrollDirection: Axis.horizontal,
-                                        itemCount: projetos[2 * index].tags.length,
-                                        itemBuilder: (context, i) {
-                                          return Padding(
-                                            padding: EdgeInsets.only(right: 5),
-                                            child: Container(
-                                              color: Color.fromRGBO(28, 28, 28, 0.9),
-                                              padding: EdgeInsets.all(5),
-                                              // splashColor: Color.fromRGBO(115,158,171, 0.6),                                  
-                                              child: Text(
-                                                '${projetos[2 * index].tags[i]}',
-                                                style: GoogleFonts.robotoSlab(
-                                                  fontSize: 10, 
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Color.fromRGBO(238, 245, 246, 1)
+                                    IconButton(
+                                      icon: Icon(Icons.comment, color: Color.fromRGBO(28, 28, 28, 0.8), size: 16), 
+                                      onPressed: () {}
+                                    ),
+                                  ],
+                                ),
+                                Text('${projetos[2 * index].description}',
+                                  style: GoogleFonts.reemKufi(fontSize: 16, color: Colors.black87),
+                                  textAlign: TextAlign.justify,
+                                  overflow: TextOverflow.ellipsis,
+                                  softWrap: true
+                                ),
+                                SizedBox(height: 10),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Container(
+                                      width: 300,
+                                      height: 25,
+                                      child: Center(
+                                        child: ListView.builder(
+                                          scrollDirection: Axis.horizontal,
+                                          itemCount: projetos[2 * index].tags.length,
+                                          itemBuilder: (context, i) {
+                                            return Padding(
+                                              padding: EdgeInsets.only(right: 5),
+                                              child: Container(
+                                                color: Color.fromRGBO(28, 28, 28, 0.9),
+                                                padding: EdgeInsets.all(5),
+                                                // splashColor: Color.fromRGBO(115,158,171, 0.6),                                  
+                                                child: Text(
+                                                  '${projetos[2 * index].tags[i]}',
+                                                  style: GoogleFonts.robotoSlab(
+                                                    fontSize: 10, 
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Color.fromRGBO(238, 245, 246, 1)
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          );
-                                        }
+                                            );
+                                          }
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Expanded(child: Container()),
-                                  InkWell(
-                                    enableFeedback: true,
-                                    onTap: () {
-                                      print('Continue tapped');
-                                      showAlertDialog(context);
-                                    },
-                                    focusColor: Colors.black38,
-                                    splashColor: Color.fromRGBO(28, 28, 28, 0.8),
-                                    child: Text(
-                                      'Continue lendo..',
-                                      style: GoogleFonts.robotoSlab(
-                                        fontSize: 11, 
-                                        fontWeight: FontWeight.bold,
-                                        color: Color.fromRGBO(28, 28, 28, 1),
+                                    SizedBox(height: 10,),
+                                    InkWell(
+                                      enableFeedback: true,
+                                      onTap: () {
+                                        print('Continue tapped');
+                                        showAlertDialog(context);
+                                      },
+                                      focusColor: Colors.black38,
+                                      splashColor: Color.fromRGBO(28, 28, 28, 0.8),
+                                      child: Text(
+                                        'Continue lendo..',
+                                        style: GoogleFonts.robotoSlab(
+                                          fontSize: 11, 
+                                          fontWeight: FontWeight.bold,
+                                          color: Color.fromRGBO(28, 28, 28, 1),
+                                        ),
                                       ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ],
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                  // SizedBox(height: 20)
                 ],
               ),
-            ) : Expanded(flex: 4, child: Container()),
-            Expanded(
-              flex: 1,
+            ) : Expanded(child: Container()),
+            Container(
+              width: 65,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -322,7 +325,6 @@ Widget timelineRow(List<Project> projetos, ScrollController _semicircleControlle
               ),
             ),
             (2 * index) + 1 < projetos.length ? Expanded(
-              flex: 4,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
@@ -337,13 +339,14 @@ Widget timelineRow(List<Project> projetos, ScrollController _semicircleControlle
                     splashColor: Color.fromRGBO(28, 28, 28, 0.8),
                     child: Card(
                       child: Container(
+                        width: 300,
                         color: Color.fromRGBO(39, 80, 115, 0.1),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
                             // mainAxisAlignment: MainAxisAlignment.center,
                             mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Container(
                                 height: 180,
@@ -361,18 +364,16 @@ Widget timelineRow(List<Project> projetos, ScrollController _semicircleControlle
                                 style: GoogleFonts.robotoSlab(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
                                 textAlign: TextAlign.justify
                               ),
-                              Wrap(
-                                crossAxisAlignment: WrapCrossAlignment.center,
-                                direction: Axis.horizontal,
-                                children: <Widget>[
-                                  Text(
-                                    'Status: ${projetos[2 * index + 1].status}',
-                                    style: GoogleFonts.robotoSlab(
-                                      fontSize: 12, 
-                                      fontWeight: FontWeight.bold,
-                                      color: Color.fromRGBO(118, 109, 109, 1),
-                                    ),
-                                  ),
+                              Text(
+                                'Status: ${projetos[2 * index + 1].status}',
+                                style: GoogleFonts.robotoSlab(
+                                  fontSize: 12, 
+                                  fontWeight: FontWeight.bold,
+                                  color: Color.fromRGBO(118, 109, 109, 1),
+                                ),
+                              ),
+                              Row(
+                                children: <Widget>[                                  
                                   Expanded(child: Container()),
                                   Text(
                                     '${projetos[2 * index + 1].likes}',
@@ -385,8 +386,7 @@ Widget timelineRow(List<Project> projetos, ScrollController _semicircleControlle
                                   IconButton(
                                     icon: Icon(Icons.favorite, color: Color.fromRGBO(28, 28, 28, 0.8), size: 16), 
                                     onPressed: () {}
-                                  ),
-                                  // SizedBox(width: 5,),
+                                  ),                                  
                                   Text(
                                     '${projetos[2 * index + 1].comments.length}',
                                     style: GoogleFonts.robotoSlab(
@@ -408,11 +408,11 @@ Widget timelineRow(List<Project> projetos, ScrollController _semicircleControlle
                                 softWrap: true
                               ),
                               SizedBox(height: 10),
-                              Wrap(
-                                direction: Axis.horizontal,
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Container(
-                                    width: 180,
+                                    width: 300,
                                     height: 25,
                                     child: Center(
                                       child: ListView.builder(
@@ -439,7 +439,7 @@ Widget timelineRow(List<Project> projetos, ScrollController _semicircleControlle
                                       ),
                                     ),
                                   ),
-                                  Expanded(child: Container()),
+                                  SizedBox(height: 10,),
                                   InkWell(
                                     enableFeedback: true,
                                     onTap: () {
@@ -467,7 +467,7 @@ Widget timelineRow(List<Project> projetos, ScrollController _semicircleControlle
                   ),
                 ],
               ),
-            ) : Expanded(flex: 4, child: Container(height: 30,)),
+            ) : Expanded(child: Container(height: 30,)),
           ],
         ),
       );
