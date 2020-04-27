@@ -30,7 +30,6 @@ class _HomeState extends State<Home> {
   }
   @override
   Widget build(BuildContext context) {
-    print(MediaQuery.of(context).size.width);
     return ResponsiveBuilder(
       builder: (context, sizingInformation) => Scaffold(
         backgroundColor: Color.fromRGBO(238, 245, 246, 1),
@@ -47,16 +46,6 @@ class _HomeState extends State<Home> {
                   height: MediaQuery.of(context).size.height * 0.7,
                   color: Color.fromRGBO(238, 245, 246, 1),
                   child: ScreenTypeLayout(
-                    // mobile: ListView(
-                    //   children: <Widget>[
-                    //     Column(
-                    //       children: <Widget>[
-                    //         profileMobile(context),
-                    //         timelinePages(sizingInformation),
-                    //       ],
-                    //     ),
-                    //   ],
-                    // ),
                     tablet: ListView(
                       children: <Widget>[
                         Column(
@@ -78,13 +67,13 @@ class _HomeState extends State<Home> {
                             //     constraints: new BoxConstraints(
                             //       minHeight: 400, //viewportConstraints.maxHeight - 48.0,
                             //     ),
-                            //     child: new IntrinsicHeight(
-                            //       child: PriceTab(
-                            //         height: 200,
-                            //         onPlaneFlightStart: () =>
-                            //           print('object')  // setState(() => showInputTabOptions = false),
-                            //       ),
-                            //     ),
+                                // child: new IntrinsicHeight(
+                                //   child: PriceTab(
+                                //     height: 200,
+                                //     onPlaneFlightStart: () =>
+                                //       print('object')  // setState(() => showInputTabOptions = false),
+                                //   ),
+                                // ),
                             //   ),
                             // ),
                             timelinePages(sizingInformation),
@@ -97,8 +86,8 @@ class _HomeState extends State<Home> {
               ],
             ),
             Positioned(
-              top: 0,//-20,
-              left: 0,//132,
+              top: 0,
+              left: 0,
               child: Container(
                 height: MediaQuery.of(context).size.height * 0.3,
                 width: MediaQuery.of(context).size.width,
@@ -111,11 +100,11 @@ class _HomeState extends State<Home> {
             ),
             sizingInformation.deviceScreenType == DeviceScreenType.Desktop
               ? Positioned(
-                top: MediaQuery.of(context).size.height * 0.3 - 110,//(MediaQuery.of(context).size.height * 0.3)*2.1 / 3, //138
+                top: MediaQuery.of(context).size.height * 0.3 - 110,
                 right: 70,
                 child: Container(
-                  height: 150,//MediaQuery.of(context).size.height * 0.3,
-                  width: 300,//MediaQuery.of(context).size.width / 4,
+                  height: 150,
+                  width: 300,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage('images/TakeaBreak2.png'),
@@ -125,15 +114,15 @@ class _HomeState extends State<Home> {
               )
               : Container(),
             Positioned(
-              top: 0,//-20,
+              top: 0,
               left: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
                 ? (MediaQuery.of(context).size.width / 2) - 180
-                : 0,//MediaQuery.of(context).size.width / 2 - 170, //132,
+                : 0,
               child: Container(
                 height: MediaQuery.of(context).size.height * 0.3,
                 width: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
                   ? MediaQuery.of(context).size.width / 4
-                  : MediaQuery.of(context).size.width, //1366 / 4,
+                  : MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage('images/teste.png'),
@@ -146,7 +135,7 @@ class _HomeState extends State<Home> {
             Positioned(
               top: (MediaQuery.of(context).size.height * 0.3) - 75,
               left: sizingInformation.deviceScreenType == DeviceScreenType.Desktop
-                ? MediaQuery.of(context).size.width * (2 / 10) - 73 //MediaQuery.of(context).size.width / 7 + 5
+                ? MediaQuery.of(context).size.width * (2 / 10) - 73
                 : MediaQuery.of(context).size.width / 2 - 73,
               child: Container(
                 width: 150.0,
@@ -163,10 +152,6 @@ class _HomeState extends State<Home> {
                   ),
                 ),
               ),
-              // child: FadeInImage(
-              //   image: AssetImage("images/profileImage.png"), 
-              //   placeholder: kImage,
-              // )
             ),
           ],
         ),
@@ -215,8 +200,6 @@ class _HomeState extends State<Home> {
                             return Center(child: CircularProgressIndicator(),);
                           case ConnectionState.active:
                             return Text('Iniciou mas não terminou');
-                          // case ConnectionState.done:
-                          //   return Text('Finalizado');
                           default: 
                             return sizingInformation.deviceScreenType == DeviceScreenType.Mobile
                               ? orderTimeLineMobile(projects, _semicircleController)
@@ -225,8 +208,18 @@ class _HomeState extends State<Home> {
                       }
                     ),
                     Center(
-                      child: booklist(),
-                      // child: Text('Books'),
+                      child: ConstrainedBox(
+                        constraints: BoxConstraints(
+                          minHeight: 400, //viewportConstraints.maxHeight - 48.0,
+                        ),
+                        child: IntrinsicHeight(
+                          child: PriceTab(
+                            height: 400,
+                            onPlaneFlightStart: () =>
+                              print('object')  // setState(() => showInputTabOptions = false),
+                          ),
+                        ),
+                      ),
                     ),
                     Center(
                       child: Text('Fotos'),
@@ -248,9 +241,7 @@ class _HomeState extends State<Home> {
     return Wrap(
       alignment: WrapAlignment.center,
       spacing: 10,
-      // runAlignment: WrapAlignment.center,
       crossAxisAlignment: WrapCrossAlignment.center,
-      // verticalDirection: VerticalDirection.up,
       children: <Widget>[
         Container(
           decoration: BoxDecoration(
@@ -264,8 +255,8 @@ class _HomeState extends State<Home> {
           child: FlatButton(
             onPressed: () {
               print('pressed Projetos');
-              // pageController.jumpToPage(0);
-              pageController.animateToPage(0, duration: Duration(seconds: 2), curve: Curves.easeInOut);
+              pageController.jumpTo(0);
+              // pageController.animateToPage(0, duration: Duration(seconds: 2), curve: Curves.easeInOut);
               setState(() {
                 page = 0;
               });
@@ -296,7 +287,7 @@ class _HomeState extends State<Home> {
           child: FlatButton(
             onPressed: () {
               print('pressed Livros');
-              // pageController.jumpToPage(1);
+              // pageController.jumpTo(1);
               pageController.animateToPage(1, duration: Duration(seconds: 2), curve: Curves.easeInOut);
               setState(() {
                 page = 1;
@@ -328,8 +319,8 @@ class _HomeState extends State<Home> {
           child: FlatButton(
             onPressed: () {
               print('pressed Fotos');
-              // pageController.jumpToPage(2);
-              pageController.animateToPage(2, duration: Duration(seconds: 2), curve: Curves.easeInOut);
+              pageController.jumpTo(2);
+              // pageController.animateToPage(2, duration: Duration(seconds: 2), curve: Curves.easeInOut);
               setState(() {
                 page = 2;
               });
@@ -360,8 +351,8 @@ class _HomeState extends State<Home> {
           child: FlatButton(
             onPressed: () {
               print('pressed About');
-              // pageController.jumpToPage(3);
-              pageController.animateToPage(3, duration: Duration(seconds: 2), curve: Curves.easeInOut);
+              pageController.jumpTo(3);
+              // pageController.animateToPage(3, duration: Duration(seconds: 2), curve: Curves.easeInOut);
               setState(() {
                 page = 3;
               });
@@ -380,23 +371,20 @@ class _HomeState extends State<Home> {
             ),
           ),
         ),
-        // sizingInformation.deviceScreenType == DeviceScreenType.Desktop ? Expanded(child: Container()) : Container(),
-        // sizingInformation.deviceScreenType == DeviceScreenType.Desktop 
-          RaisedButton(
-            onPressed: () {
-              print('FOLLOW');
-              showAlertDialog(context);
-            },
-            color: Color.fromRGBO(28, 28, 28, 1),
-            splashColor: Color.fromRGBO(115,158,171, 1),
-            child: Text(
-              'Follow',
-              style: GoogleFonts.pTSans(
-                fontSize: 20, fontWeight: FontWeight.bold, color: Color.fromRGBO(238, 245, 246, 1),
-              ),
+        RaisedButton(
+          onPressed: () {
+            print('FOLLOW');
+            showAlertDialog(context);
+          },
+          color: Color.fromRGBO(28, 28, 28, 1),
+          splashColor: Color.fromRGBO(115,158,171, 1),
+          child: Text(
+            'Follow',
+            style: GoogleFonts.pTSans(
+              fontSize: 20, fontWeight: FontWeight.bold, color: Color.fromRGBO(238, 245, 246, 1),
             ),
           ),
-          // : Container(),
+        ),
         Container(width: 20,),
       ],
     );

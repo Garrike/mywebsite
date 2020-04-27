@@ -31,16 +31,16 @@ Future getProjects () async {
   Profile profile = await getUser();
   projectsService = [];
   
-  print('Projects: ${profile.projectId.length}');
+  // print('Projects: ${profile.projectId.length}');
   try {
-    print(profile.projectId.length);
+    // print(profile.projectId.length);
     for (var item in profile.projectId) { 
       final response = await http.get(
       'https://us-central1-martinsmiguel-31f62.cloudfunctions.net/api/home/projects/$item'
       ); 
       var data = json.decode(response.body);
-      print(data);
-      print('Project add before: ${projectsService.length}');
+      // print(data);
+      // print('Project add before: ${projectsService.length}');
       projectsService.add(
         Project(
           date: DateTime(2020, 04, 04),//data['date'],
@@ -57,9 +57,9 @@ Future getProjects () async {
           likes: 4,
         )
       );
-      print('Project add after: ${projectsService.length}');
+      // print('Project add after: ${projectsService.length}');
     }
-    print(projectsService.length);
+    // print(projectsService.length);
     return projectsService;
   } catch(e) {
     print(e);
